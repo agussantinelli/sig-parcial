@@ -1,84 +1,261 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Examen - SIG</title>
+    <title>Simulador de Examen - SIG (30 Preguntas)</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f3f4f6; }
-        .fade-in { animation: fadeIn 0.3s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .option-btn { transition: all 0.2s ease; }
-        .option-btn:hover:not(:disabled) { transform: translateX(5px); }
-        .correct-ans { background-color: #10b981 !important; color: white !important; border-color: #10b981 !important; }
-        .wrong-ans { background-color: #ef4444 !important; color: white !important; border-color: #ef4444 !important; }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #f8fafc; }
+        .fade-in { animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .highlight-card { animation: cardGlow 1.8s ease-out; }
+        @keyframes cardGlow {
+            0% { box-shadow: 0 0 0 4px #3b82f6, 0 10px 25px -5px rgba(59, 130, 246, 0.3); }
+            100% { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); }
+        }
+        .option-btn { transition: all 0.18s ease-in-out; }
+        .option-btn:hover:not(:disabled) { transform: translateX(4px); }
+        .correct-opt { background-color: #10b981 !important; color: #ffffff !important; border-color: #059669 !important; }
+        .wrong-opt { background-color: #ef4444 !important; color: #ffffff !important; border-color: #dc2626 !important; }
+        .reveal-correct { background-color: #ecfdf5 !important; color: #065f46 !important; border-color: #10b981 !important; font-weight: 600; }
+        /* Custom scrollbar for question matrix */
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
+<body class="min-h-screen text-slate-800 antialiased flex flex-col">
 
-    <div id="app" class="bg-white rounded-2xl shadow-xl w-full max-w-4xl overflow-hidden min-h-[500px] flex flex-col">
+    <!-- Top Sticky Bar -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold shadow-md shadow-blue-500/20">
+                    SIG
+                </div>
+                <div>
+                    <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">Simulador de Examen</h1>
+                    <p class="text-xs text-slate-500">30 Preguntas · Modo Simultáneo y Libre</p>
+                </div>
+            </div>
+
+            <!-- Global Stats in Header -->
+            <div id="header-stats" class="hidden items-center gap-2 sm:gap-4 text-xs sm:text-sm font-semibold">
+                <div class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 rounded-lg text-slate-700">
+                    <span>Respondidas:</span>
+                    <span id="stat-answered" class="text-blue-600 font-bold">0/30</span>
+                </div>
+                <div class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 rounded-lg text-emerald-700">
+                    <span>Correctas:</span>
+                    <span id="stat-correct" class="font-bold">0</span>
+                </div>
+                <div class="flex items-center gap-1.5 px-3 py-1.5 bg-rose-50 rounded-lg text-rose-700">
+                    <span>Incorrectas:</span>
+                    <span id="stat-incorrect" class="font-bold">0</span>
+                </div>
+            </div>
+
+            <!-- View Switcher & Action Buttons -->
+            <div id="header-actions" class="hidden items-center gap-2">
+                <div class="bg-slate-100 p-0.5 rounded-lg flex text-xs font-medium">
+                    <button id="view-all-btn" onclick="setViewMode('all')" class="px-2.5 py-1.5 rounded-md transition-all bg-white text-blue-700 shadow-sm font-semibold">
+                        Todas simultáneas
+                    </button>
+                    <button id="view-single-btn" onclick="setViewMode('single')" class="px-2.5 py-1.5 rounded-md transition-all text-slate-600 hover:text-slate-900">
+                        Una por una
+                    </button>
+                </div>
+                <button onclick="showResults()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold py-1.5 px-3 sm:px-4 rounded-lg shadow-sm transition-all flex items-center gap-1.5">
+                    <span>Finalizar</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Progress bar line -->
+        <div class="w-full bg-slate-100 h-1">
+            <div id="global-progress" class="bg-blue-600 h-1 transition-all duration-300" style="width: 0%"></div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
         
         <!-- Pantalla de Inicio -->
-        <div id="start-screen" class="flex-1 flex flex-col items-center justify-center p-8 text-center fade-in">
-            <div class="bg-blue-100 p-4 rounded-full mb-6">
-                <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <div id="start-screen" class="max-w-2xl mx-auto my-12 bg-white rounded-2xl shadow-xl border border-slate-200/80 p-8 sm:p-10 text-center fade-in">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-blue-50 text-blue-600 mb-6 shadow-inner">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
             </div>
-            <h1 class="text-3xl font-bold text-gray-800 mb-4">Simulador de Examen: Sistemas de Información Geográfica</h1>
-            <p class="text-gray-600 mb-8 max-w-lg">Pon a prueba tus conocimientos con estas 30 preguntas basadas en el temario oficial (Teoría, Geodesia, Proyecciones, IDE y Formatos).</p>
-            <button onclick="startQuiz()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                Comenzar Examen
-            </button>
+            
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">Simulador Parcial SIG</h2>
+            <p class="text-slate-600 text-sm sm:text-base mb-6 leading-relaxed">
+                Podés responder las <strong>30 preguntas en simultáneo</strong> o saltar a cualquiera en el orden que prefieras. Cada respuesta te mostrará retroalimentación y explicación inmediata.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left mb-8">
+                <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                    <div class="text-blue-600 font-bold text-sm mb-1">⚡ Sin orden fijo</div>
+                    <div class="text-xs text-slate-500">Resolvé la que quieras en cualquier momento.</div>
+                </div>
+                <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                    <div class="text-blue-600 font-bold text-sm mb-1">🎯 Corrección al instante</div>
+                    <div class="text-xs text-slate-500">Verificá tus aciertos y errores con explicaciones.</div>
+                </div>
+                <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
+                    <div class="text-blue-600 font-bold text-sm mb-1">🧭 Matriz 1 a 30</div>
+                    <div class="text-xs text-slate-500">Mapa visual para saltar con un solo click.</div>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <button onclick="startQuiz('all')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-blue-500/25 transition-all transform hover:-translate-y-0.5">
+                    Comenzar (Ver todas juntas)
+                </button>
+                <button onclick="startQuiz('single')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 px-6 rounded-xl transition-all">
+                    Comenzar (Una por una con navegación libre)
+                </button>
+            </div>
         </div>
 
         <!-- Pantalla del Cuestionario -->
-        <div id="quiz-screen" class="hidden flex-1 flex-col fade-in">
-            <div class="bg-blue-600 text-white p-6 flex justify-between items-center">
-                <span id="question-counter" class="font-semibold text-blue-100">Pregunta 1 de 30</span>
-                <span id="score-display" class="font-bold">Puntaje: 0</span>
-            </div>
-            
-            <div class="w-full bg-gray-200 h-2">
-                <div id="progress-bar" class="bg-blue-400 h-2 transition-all duration-300" style="width: 0%"></div>
-            </div>
-
-            <div class="p-8 flex-1 flex flex-col">
-                <h2 id="question-text" class="text-xl font-bold text-gray-800 mb-6 leading-relaxed"></h2>
+        <div id="quiz-screen" class="hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                 
-                <div id="options-container" class="space-y-3 flex-1">
-                    <!-- Opciones generadas por JS -->
+                <!-- Columna Principal: Preguntas -->
+                <div class="lg:col-span-8 space-y-6">
+                    
+                    <!-- Barra de Filtros y Navegación Rápida -->
+                    <div class="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-sm flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex items-center gap-1.5 text-xs font-semibold overflow-x-auto pb-1 sm:pb-0">
+                            <span class="text-slate-500 mr-1">Filtrar:</span>
+                            <button id="filter-all" onclick="setFilter('all')" class="px-2.5 py-1.5 rounded-lg bg-blue-100 text-blue-700 font-bold transition-all">
+                                Todas (30)
+                            </button>
+                            <button id="filter-pending" onclick="setFilter('pending')" class="px-2.5 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">
+                                Pendientes (<span id="count-pending">30</span>)
+                            </button>
+                            <button id="filter-correct" onclick="setFilter('correct')" class="px-2.5 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-all">
+                                Correctas (<span id="count-correct">0</span>)
+                            </button>
+                            <button id="filter-incorrect" onclick="setFilter('incorrect')" class="px-2.5 py-1.5 rounded-lg bg-rose-50 text-rose-700 hover:bg-rose-100 transition-all">
+                                Incorrectas (<span id="count-incorrect">0</span>)
+                            </button>
+                        </div>
+
+                        <button onclick="jumpToNextPending()" class="text-xs font-semibold text-blue-600 hover:text-blue-800 flex items-center gap-1 ml-auto">
+                            <span>Siguiente pendiente</span>
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                        </button>
+                    </div>
+
+                    <!-- Modo 1: Lista con Todas las Preguntas Simultáneas -->
+                    <div id="questions-all-container" class="space-y-6">
+                        <!-- Generado dinámicamente -->
+                    </div>
+
+                    <!-- Modo 2: Vista Enfocada (1 por 1) -->
+                    <div id="question-single-container" class="hidden">
+                        <!-- Tarjeta individual generada dinámicamente -->
+                    </div>
+
                 </div>
 
-                <div id="feedback-container" class="hidden mt-6 p-4 rounded-lg">
-                    <p id="feedback-text" class="font-medium"></p>
+                <!-- Columna Lateral Sticky: Matriz de 30 Preguntas -->
+                <div class="lg:col-span-4 sticky top-20 space-y-4">
+                    <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-5">
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+                                <span>Mapa de Preguntas</span>
+                            </h3>
+                            <span id="score-badge" class="text-xs font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                                0 / 30 pts
+                            </span>
+                        </div>
+
+                        <!-- Grid 1 a 30 -->
+                        <div id="question-grid" class="grid grid-cols-6 gap-2 mb-4">
+                            <!-- 30 botones generados por JS -->
+                        </div>
+
+                        <!-- Referencia de colores -->
+                        <div class="pt-3 border-t border-slate-100 grid grid-cols-3 gap-1 text-[11px] text-slate-500 font-medium">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-slate-200 border border-slate-300"></span>
+                                <span>Pendiente</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                                <span>Correcta</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                                <span>Incorrecta</span>
+                            </div>
+                        </div>
+
+                        <!-- Botones de Acción en Sidebar -->
+                        <div class="mt-5 space-y-2">
+                            <button onclick="showResults()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-xl shadow-sm text-sm transition-all flex items-center justify-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span>Ver Resultados Finales</span>
+                            </button>
+                            <button onclick="resetQuiz()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold py-2 px-4 rounded-xl text-xs transition-all">
+                                Reiniciar examen
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="mt-8 flex justify-end">
-                    <button id="next-btn" onclick="nextQuestion()" class="hidden bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-6 rounded-lg transition-colors">
-                        Siguiente Pregunta ➔
+            </div>
+        </div>
+
+        <!-- Modal de Resultados Finales -->
+        <div id="result-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+            <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-8 text-center fade-in border border-slate-100">
+                <div id="modal-result-icon" class="mb-4"></div>
+                <h3 class="text-2xl font-extrabold text-slate-900 mb-1">Examen Finalizado</h3>
+                <p class="text-sm text-slate-500 mb-6">Resumen general de tu desempeño</p>
+
+                <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-5 mb-6">
+                    <div class="text-4xl font-black text-blue-600 mb-1" id="modal-final-score">0 / 30</div>
+                    <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4" id="modal-percentage">0% de aciertos</div>
+                    
+                    <div class="grid grid-cols-3 gap-2 pt-3 border-t border-slate-200 text-xs">
+                        <div>
+                            <div class="text-emerald-600 font-bold text-lg" id="modal-correct-count">0</div>
+                            <div class="text-slate-500">Correctas</div>
+                        </div>
+                        <div>
+                            <div class="text-rose-600 font-bold text-lg" id="modal-incorrect-count">0</div>
+                            <div class="text-slate-500">Incorrectas</div>
+                        </div>
+                        <div>
+                            <div class="text-amber-600 font-bold text-lg" id="modal-unanswered-count">0</div>
+                            <div class="text-slate-500">Sin responder</div>
+                        </div>
+                    </div>
+                </div>
+
+                <p id="modal-result-message" class="text-slate-700 text-sm font-medium mb-6 px-2 leading-relaxed"></p>
+
+                <div class="flex flex-col sm:flex-row gap-2.5">
+                    <button onclick="closeResultModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 px-4 rounded-xl text-sm transition-all">
+                        Revisar Respuestas
                     </button>
-                    <button id="finish-btn" onclick="showResults()" class="hidden bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition-colors">
-                        Ver Resultados Finales
+                    <button onclick="resetQuiz()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition-all shadow-sm">
+                        Intentar de Nuevo
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Pantalla de Resultados -->
-        <div id="result-screen" class="hidden flex-1 flex-col items-center justify-center p-8 text-center fade-in">
-            <div id="result-icon" class="mb-6"></div>
-            <h2 class="text-3xl font-bold text-gray-800 mb-2">Examen Finalizado</h2>
-            <p class="text-xl text-gray-600 mb-6">Tu puntuación final es:</p>
-            <div class="text-5xl font-extrabold text-blue-600 mb-8" id="final-score"></div>
-            
-            <p id="result-message" class="text-gray-700 font-medium mb-8 max-w-md"></p>
-
-            <button onclick="location.reload()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                Volver a intentar
-            </button>
-        </div>
-
-    </div>
+    </main>
 
     <script>
         const questions = [
@@ -414,114 +591,401 @@
             }
         ];
 
-        let currentQuestionIndex = 0;
-        let score = 0;
-        let hasAnswered = false;
+        // Estado de la aplicación
+        let userAnswers = new Array(questions.length).fill(null);
+        let viewMode = 'all'; // 'all' (todas en simultáneo) o 'single' (una por una)
+        let currentSingleIndex = 0;
+        let currentFilter = 'all'; // 'all', 'pending', 'correct', 'incorrect'
 
-        function startQuiz() {
+        function startQuiz(mode = 'all') {
             document.getElementById('start-screen').classList.add('hidden');
-            document.getElementById('quiz-screen').classList.remove('hidden');
-            document.getElementById('quiz-screen').classList.add('flex');
-            loadQuestion();
+            
+            const quizScreen = document.getElementById('quiz-screen');
+            quizScreen.classList.remove('hidden');
+            quizScreen.classList.add('fade-in');
+
+            document.getElementById('header-stats').classList.remove('hidden');
+            document.getElementById('header-stats').classList.add('flex');
+            document.getElementById('header-actions').classList.remove('hidden');
+            document.getElementById('header-actions').classList.add('flex');
+
+            setViewMode(mode);
+            renderQuestionGrid();
+            renderAllQuestions();
+            updateStats();
         }
 
-        function loadQuestion() {
-            hasAnswered = false;
-            const q = questions[currentQuestionIndex];
-            
-            document.getElementById('question-counter').innerText = `Pregunta ${currentQuestionIndex + 1} de ${questions.length}`;
-            document.getElementById('question-text').innerText = q.q;
-            
-            const progress = ((currentQuestionIndex) / questions.length) * 100;
-            document.getElementById('progress-bar').style.width = `${progress}%`;
+        function setViewMode(mode) {
+            viewMode = mode;
+            const btnAll = document.getElementById('view-all-btn');
+            const btnSingle = document.getElementById('view-single-btn');
+            const allContainer = document.getElementById('questions-all-container');
+            const singleContainer = document.getElementById('question-single-container');
 
-            const optionsContainer = document.getElementById('options-container');
-            optionsContainer.innerHTML = '';
-            
-            q.options.forEach((opt, index) => {
+            if (mode === 'all') {
+                btnAll.className = 'px-2.5 py-1.5 rounded-md transition-all bg-white text-blue-700 shadow-sm font-semibold';
+                btnSingle.className = 'px-2.5 py-1.5 rounded-md transition-all text-slate-600 hover:text-slate-900';
+                allContainer.classList.remove('hidden');
+                singleContainer.classList.add('hidden');
+                renderAllQuestions();
+            } else {
+                btnSingle.className = 'px-2.5 py-1.5 rounded-md transition-all bg-white text-blue-700 shadow-sm font-semibold';
+                btnAll.className = 'px-2.5 py-1.5 rounded-md transition-all text-slate-600 hover:text-slate-900';
+                allContainer.classList.add('hidden');
+                singleContainer.classList.remove('hidden');
+                renderSingleQuestion();
+            }
+            renderQuestionGrid();
+        }
+
+        function setFilter(filter) {
+            currentFilter = filter;
+            const filterBtns = {
+                'all': document.getElementById('filter-all'),
+                'pending': document.getElementById('filter-pending'),
+                'correct': document.getElementById('filter-correct'),
+                'incorrect': document.getElementById('filter-incorrect')
+            };
+
+            Object.keys(filterBtns).forEach(key => {
+                const btn = filterBtns[key];
+                if (key === filter) {
+                    btn.className = 'px-2.5 py-1.5 rounded-lg bg-blue-600 text-white font-bold transition-all shadow-sm';
+                } else {
+                    btn.className = 'px-2.5 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all font-medium';
+                }
+            });
+
+            if (viewMode === 'all') {
+                renderAllQuestions();
+            } else {
+                renderSingleQuestion();
+            }
+        }
+
+        function updateStats() {
+            const answeredCount = userAnswers.filter(a => a !== null).length;
+            const correctCount = userAnswers.filter(a => a && a.isCorrect).length;
+            const incorrectCount = userAnswers.filter(a => a && !a.isCorrect).length;
+            const pendingCount = questions.length - answeredCount;
+
+            document.getElementById('stat-answered').innerText = `${answeredCount}/${questions.length}`;
+            document.getElementById('stat-correct').innerText = correctCount;
+            document.getElementById('stat-incorrect').innerText = incorrectCount;
+
+            document.getElementById('count-pending').innerText = pendingCount;
+            document.getElementById('count-correct').innerText = correctCount;
+            document.getElementById('count-incorrect').innerText = incorrectCount;
+
+            document.getElementById('score-badge').innerText = `${correctCount} / ${questions.length} pts`;
+
+            const percentage = (answeredCount / questions.length) * 100;
+            document.getElementById('global-progress').style.width = `${percentage}%`;
+        }
+
+        function renderQuestionGrid() {
+            const grid = document.getElementById('question-grid');
+            grid.innerHTML = '';
+
+            questions.forEach((_, idx) => {
                 const btn = document.createElement('button');
-                btn.className = 'option-btn w-full text-left p-4 rounded-lg border-2 border-gray-200 bg-gray-50 hover:border-blue-500 font-medium text-gray-700';
-                btn.innerText = opt;
-                btn.onclick = () => selectOption(index, btn);
-                optionsContainer.appendChild(btn);
-            });
+                btn.id = `grid-btn-${idx}`;
+                const answer = userAnswers[idx];
 
-            document.getElementById('feedback-container').classList.add('hidden');
-            document.getElementById('next-btn').classList.add('hidden');
-            document.getElementById('finish-btn').classList.add('hidden');
+                let baseClass = 'h-9 rounded-lg font-bold text-xs flex items-center justify-center transition-all border ';
+
+                if (answer === null) {
+                    baseClass += 'bg-slate-50 border-slate-200 text-slate-700 hover:border-blue-400 hover:bg-blue-50';
+                } else if (answer.isCorrect) {
+                    baseClass += 'bg-emerald-500 border-emerald-600 text-white shadow-sm';
+                } else {
+                    baseClass += 'bg-rose-500 border-rose-600 text-white shadow-sm';
+                }
+
+                if (viewMode === 'single' && currentSingleIndex === idx) {
+                    baseClass += ' ring-2 ring-blue-600 ring-offset-2 scale-105';
+                }
+
+                btn.className = baseClass;
+                btn.innerHTML = `<span>${idx + 1}</span>`;
+                btn.title = `Pregunta ${idx + 1}: ${answer === null ? 'Pendiente' : (answer.isCorrect ? 'Correcta' : 'Incorrecta')}`;
+                btn.onclick = () => handleGridClick(idx);
+
+                grid.appendChild(btn);
+            });
         }
 
-        function selectOption(selectedIndex, btnElement) {
-            if (hasAnswered) return;
-            hasAnswered = true;
-
-            const q = questions[currentQuestionIndex];
-            const buttons = document.querySelectorAll('.option-btn');
-            
-            buttons.forEach(btn => {
-                btn.disabled = true;
-                btn.classList.remove('hover:border-blue-500');
-                btn.classList.add('opacity-75', 'cursor-not-allowed');
-            });
-
-            const feedbackContainer = document.getElementById('feedback-container');
-            const feedbackText = document.getElementById('feedback-text');
-            feedbackContainer.classList.remove('hidden');
-
-            if (selectedIndex === q.ans) {
-                btnElement.classList.add('correct-ans');
-                score++;
-                document.getElementById('score-display').innerText = `Puntaje: ${score}`;
-                feedbackContainer.classList.add('bg-green-100', 'text-green-800');
-                feedbackContainer.classList.remove('bg-red-100', 'text-red-800');
-                feedbackText.innerHTML = `<strong>¡Correcto!</strong> ${q.exp}`;
+        function handleGridClick(idx) {
+            if (viewMode === 'all') {
+                if (currentFilter !== 'all') {
+                    setFilter('all');
+                }
+                const card = document.getElementById(`question-card-${idx}`);
+                if (card) {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    card.classList.remove('highlight-card');
+                    void card.offsetWidth; // Trigger reflow
+                    card.classList.add('highlight-card');
+                }
             } else {
-                btnElement.classList.add('wrong-ans');
-                buttons[q.ans].classList.add('correct-ans');
-                feedbackContainer.classList.add('bg-red-100', 'text-red-800');
-                feedbackContainer.classList.remove('bg-green-100', 'text-green-800');
-                feedbackText.innerHTML = `<strong>Incorrecto.</strong> ${q.exp}`;
-            }
-
-            if (currentQuestionIndex < questions.length - 1) {
-                document.getElementById('next-btn').classList.remove('hidden');
-            } else {
-                document.getElementById('progress-bar').style.width = '100%';
-                document.getElementById('finish-btn').classList.remove('hidden');
+                currentSingleIndex = idx;
+                renderSingleQuestion();
+                renderQuestionGrid();
             }
         }
 
-        function nextQuestion() {
-            currentQuestionIndex++;
-            loadQuestion();
+        function jumpToNextPending() {
+            const nextPending = userAnswers.findIndex(a => a === null);
+            if (nextPending === -1) {
+                alert('¡Felicitaciones! Ya respondiste todas las preguntas.');
+                return;
+            }
+            handleGridClick(nextPending);
+        }
+
+        function buildQuestionCardHTML(q, idx) {
+            const answer = userAnswers[idx];
+            const hasAnswered = answer !== null;
+            const letters = ['A', 'B', 'C', 'D'];
+
+            let statusBadge = '';
+            if (!hasAnswered) {
+                statusBadge = '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 border border-slate-200">Pendiente</span>';
+            } else if (answer.isCorrect) {
+                statusBadge = '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">✓ Correcta (+1)</span>';
+            } else {
+                statusBadge = '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-100 text-rose-800 border border-rose-300">✗ Incorrecta</span>';
+            }
+
+            let optionsHTML = '';
+            q.options.forEach((opt, optIdx) => {
+                let btnClass = 'option-btn w-full text-left p-3.5 sm:p-4 rounded-xl border-2 font-medium text-xs sm:text-sm flex items-start gap-3 ';
+
+                if (!hasAnswered) {
+                    btnClass += 'border-slate-200 bg-white hover:border-blue-500 hover:bg-blue-50/50 text-slate-700 cursor-pointer';
+                } else {
+                    btnClass += 'cursor-default ';
+                    if (optIdx === answer.selectedIndex) {
+                        btnClass += answer.isCorrect ? 'correct-opt shadow-md' : 'wrong-opt shadow-md';
+                    } else if (optIdx === q.ans) {
+                        btnClass += 'reveal-correct';
+                    } else {
+                        btnClass += 'border-slate-200 bg-slate-50 text-slate-400 opacity-60';
+                    }
+                }
+
+                const clickAttr = !hasAnswered ? `onclick="selectOption(${idx}, ${optIdx})"` : '';
+                const disabledAttr = hasAnswered ? 'disabled' : '';
+
+                optionsHTML += `
+                    <button ${clickAttr} ${disabledAttr} class="${btnClass}">
+                        <span class="inline-flex items-center justify-center w-6 h-6 rounded-lg text-xs font-bold border ${hasAnswered && optIdx === answer.selectedIndex ? 'border-white text-white' : 'border-slate-300 text-slate-500 bg-slate-100'}">
+                            ${letters[optIdx]}
+                        </span>
+                        <span class="flex-1 leading-snug">${opt}</span>
+                    </button>
+                `;
+            });
+
+            let feedbackHTML = '';
+            if (hasAnswered) {
+                if (answer.isCorrect) {
+                    feedbackHTML = `
+                        <div class="mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs sm:text-sm fade-in">
+                            <div class="flex items-start gap-2.5">
+                                <span class="text-base">🎉</span>
+                                <div>
+                                    <strong class="font-bold">¡Respuesta Correcta!</strong>
+                                    <p class="mt-0.5 text-emerald-800 leading-relaxed">${q.exp}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    feedbackHTML = `
+                        <div class="mt-4 p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-900 text-xs sm:text-sm fade-in">
+                            <div class="flex items-start gap-2.5">
+                                <span class="text-base">💡</span>
+                                <div>
+                                    <strong class="font-bold">Respuesta Incorrecta.</strong>
+                                    <p class="mt-0.5 text-rose-800 leading-relaxed">${q.exp}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            return `
+                <div id="question-card-${idx}" class="bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow transition-all p-5 sm:p-7 relative">
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Pregunta ${idx + 1} de ${questions.length}</span>
+                        ${statusBadge}
+                    </div>
+
+                    <h3 class="text-base sm:text-lg font-bold text-slate-800 mb-5 leading-snug">
+                        ${q.q}
+                    </h3>
+
+                    <div class="space-y-2.5">
+                        ${optionsHTML}
+                    </div>
+
+                    ${feedbackHTML}
+                </div>
+            `;
+        }
+
+        function renderAllQuestions() {
+            const container = document.getElementById('questions-all-container');
+            let html = '';
+
+            let visibleCount = 0;
+            questions.forEach((q, idx) => {
+                const answer = userAnswers[idx];
+                let isMatch = true;
+
+                if (currentFilter === 'pending' && answer !== null) isMatch = false;
+                if (currentFilter === 'correct' && (!answer || !answer.isCorrect)) isMatch = false;
+                if (currentFilter === 'incorrect' && (!answer || answer.isCorrect)) isMatch = false;
+
+                if (isMatch) {
+                    visibleCount++;
+                    html += buildQuestionCardHTML(q, idx);
+                }
+            });
+
+            if (visibleCount === 0) {
+                html = `
+                    <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center text-slate-500">
+                        <p class="font-medium text-sm">No hay preguntas que coincidan con el filtro seleccionado.</p>
+                        <button onclick="setFilter('all')" class="mt-3 text-xs font-bold text-blue-600 hover:underline">Ver todas las preguntas</button>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+        }
+
+        function renderSingleQuestion() {
+            const container = document.getElementById('question-single-container');
+            const q = questions[currentSingleIndex];
+            const hasPrev = currentSingleIndex > 0;
+            const hasNext = currentSingleIndex < questions.length - 1;
+
+            const cardHTML = buildQuestionCardHTML(q, currentSingleIndex);
+
+            container.innerHTML = `
+                <div class="space-y-4">
+                    ${cardHTML}
+                    
+                    <div class="flex items-center justify-between gap-3 pt-2">
+                        <button onclick="navigateSingle(-1)" ${!hasPrev ? 'disabled' : ''} class="px-4 py-2.5 rounded-xl border border-slate-200 bg-white font-bold text-xs sm:text-sm text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm flex items-center gap-2">
+                            <span>← Anterior</span>
+                        </button>
+                        
+                        <button onclick="jumpToNextPending()" class="text-xs font-bold text-blue-600 hover:text-blue-800">
+                            Saltar a no respondida
+                        </button>
+
+                        <button onclick="navigateSingle(1)" ${!hasNext ? 'disabled' : ''} class="px-4 py-2.5 rounded-xl border border-slate-200 bg-white font-bold text-xs sm:text-sm text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm flex items-center gap-2">
+                            <span>Siguiente →</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function navigateSingle(delta) {
+            const newIndex = currentSingleIndex + delta;
+            if (newIndex >= 0 && newIndex < questions.length) {
+                currentSingleIndex = newIndex;
+                renderSingleQuestion();
+                renderQuestionGrid();
+            }
+        }
+
+        function selectOption(questionIndex, selectedIndex) {
+            if (userAnswers[questionIndex] !== null) return;
+
+            const q = questions[questionIndex];
+            const isCorrect = (selectedIndex === q.ans);
+
+            userAnswers[questionIndex] = {
+                selectedIndex,
+                isCorrect
+            };
+
+            // Actualizar interfaz
+            updateStats();
+            renderQuestionGrid();
+
+            if (viewMode === 'all') {
+                // Actualizar únicamente la tarjeta seleccionada para evitar que la página salte
+                const card = document.getElementById(`question-card-${questionIndex}`);
+                if (card) {
+                    const temp = document.createElement('div');
+                    temp.innerHTML = buildQuestionCardHTML(q, questionIndex);
+                    card.replaceWith(temp.firstElementChild);
+                }
+            } else {
+                renderSingleQuestion();
+            }
         }
 
         function showResults() {
-            document.getElementById('quiz-screen').classList.add('hidden');
-            document.getElementById('quiz-screen').classList.remove('flex');
-            
-            const resultScreen = document.getElementById('result-screen');
-            resultScreen.classList.remove('hidden');
-            resultScreen.classList.add('flex');
+            const answeredCount = userAnswers.filter(a => a !== null).length;
+            const correctCount = userAnswers.filter(a => a && a.isCorrect).length;
+            const incorrectCount = userAnswers.filter(a => a && !a.isCorrect).length;
+            const unansweredCount = questions.length - answeredCount;
 
-            document.getElementById('final-score').innerText = `${score} / ${questions.length}`;
+            const percentage = (correctCount / questions.length) * 100;
+
+            document.getElementById('modal-final-score').innerText = `${correctCount} / ${questions.length}`;
+            document.getElementById('modal-percentage').innerText = `${percentage.toFixed(0)}% de aciertos (${correctCount} de ${questions.length} puntos)`;
             
-            const percentage = (score / questions.length) * 100;
-            const message = document.getElementById('result-message');
-            const icon = document.getElementById('result-icon');
+            document.getElementById('modal-correct-count').innerText = correctCount;
+            document.getElementById('modal-incorrect-count').innerText = incorrectCount;
+            document.getElementById('modal-unanswered-count').innerText = unansweredCount;
+
+            const message = document.getElementById('modal-result-message');
+            const icon = document.getElementById('modal-result-icon');
 
             if (percentage >= 90) {
                 message.innerText = "¡Excelente! Tienes un dominio total de los conceptos de SIG (Geodesia, Proyecciones, IDE y Formatos). Estás más que listo para el parcial.";
-                icon.innerHTML = '<span class="text-7xl">🏆</span>';
+                icon.innerHTML = '<span class="text-6xl">🏆</span>';
             } else if (percentage >= 70) {
                 message.innerText = "¡Muy bien! Tienes bases sólidas. Repasa un poco los detalles sobre metadatos o servicios OGC para asegurar la máxima nota.";
-                icon.innerHTML = '<span class="text-7xl">👏</span>';
+                icon.innerHTML = '<span class="text-6xl">👏</span>';
             } else if (percentage >= 50) {
                 message.innerText = "Aprobado justo. Hay varios conceptos que se mezclan (probablemente datum vs proyecciones, o WMS vs WFS). Te sugiero dar otra lectura profunda al resumen.";
-                icon.innerHTML = '<span class="text-7xl">📚</span>';
+                icon.innerHTML = '<span class="text-6xl">📚</span>';
             } else {
                 message.innerText = "Te falta un poco de estudio. Concéntrate en diferenciar bien Raster vs Vectorial y los conceptos fundamentales de Geodesia.";
-                icon.innerHTML = '<span class="text-7xl">⚠️</span>';
+                icon.innerHTML = '<span class="text-6xl">⚠️</span>';
+            }
+
+            document.getElementById('result-modal').classList.remove('hidden');
+        }
+
+        function closeResultModal() {
+            document.getElementById('result-modal').classList.add('hidden');
+        }
+
+        function resetQuiz() {
+            if (confirm('¿Estás seguro de que quieres reiniciar todo el examen? Se borrarán tus respuestas.')) {
+                userAnswers = new Array(questions.length).fill(null);
+                currentSingleIndex = 0;
+                currentFilter = 'all';
+                closeResultModal();
+                updateStats();
+                renderQuestionGrid();
+                if (viewMode === 'all') {
+                    renderAllQuestions();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    renderSingleQuestion();
+                }
             }
         }
     </script>
