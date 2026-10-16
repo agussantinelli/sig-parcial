@@ -260,397 +260,545 @@
     <script>
         const questions = [
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Sobre la definición y características de los SIG:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Los SIG combinan información cartográfica digital con información atributiva organizada mediante tablas.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>La diferencia radical entre un SIG y otros paquetes gráficos reside en que el SIG es esencialmente una base de datos espaciales.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>El SIG solo almacena información cartográfica digital y permite dibujarla, pero no cuenta con análisis espacial.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Permiten a los usuarios crear consultas interactivas, generar mapas y presentar los resultados de las operaciones.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Sobre la definición y características de los SIG",
+        "type": "multi",
         "options": [
-            "Opciones A, B y D son correctas.",
-            "Opciones A, C y D son correctas.",
-            "Solo las opciones B y D son correctas.",
-            "Todas las opciones (A, B, C y D) son correctas."
+            "Los SIG combinan información cartográfica digital con información atributiva organizada mediante tablas.",
+            "La diferencia radical entre un SIG y otros paquetes gráficos reside en que el SIG es esencialmente una base de datos espaciales.",
+            "El SIG solo almacena información cartográfica digital y permite dibujarla, pero no cuenta con análisis espacial.",
+            "Permiten a los usuarios crear consultas interactivas, generar mapas y presentar los resultados de las operaciones."
         ],
-        "ans": 0,
+        "correctAnswers": [
+            0,
+            1,
+            3
+        ],
         "exp": "La opción C es una trampa típica; los SIG no solo dibujan, sino que vinculan la geometría con datos alfanuméricos permitiendo análisis espacial complejo."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Componentes fundamentales para que un SIG funcione:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Bases de datos espaciales, donde la realidad territorial se codifica mediante geometrías.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Bases de datos temáticas, que contienen la información descriptiva de los elementos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Administradores del sistema, encargados de resolver los requerimientos de usuarios y mantener el sistema.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Exclusivamente software libre, ya que los SIG no pueden operar en entornos comerciales.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Componentes fundamentales para que un SIG funcione",
+        "type": "multi",
         "options": [
-            "Solo las opciones A y B son correctas.",
-            "Opciones A, B y C son correctas.",
-            "Opciones B, C y D son correctas.",
-            "Todas las opciones son correctas."
+            "Bases de datos espaciales, donde la realidad territorial se codifica mediante geometrías.",
+            "Bases de datos temáticas, que contienen la información descriptiva de los elementos.",
+            "Administradores del sistema, encargados de resolver los requerimientos de usuarios y mantener el sistema.",
+            "Exclusivamente software libre, ya que los SIG no pueden operar en entornos comerciales."
         ],
-        "ans": 1,
+        "correctAnswers": [
+            0,
+            1,
+            2
+        ],
         "exp": "La opción D es falsa porque el mercado de software SIG está dominado tanto por distribuidores comerciales (ej. ESRI) como por desarrolladores de software libre (QGIS)."
     },
     {
         "q": "En el contexto de la representación cartográfica, ¿qué función cumple el Elipsoide de referencia?",
+        "type": "single",
         "options": [
             "Representar con exactitud todas las montañas y valles del terreno.",
             "Almacenar los atributos descriptivos de las parcelas.",
             "Simplificar matemáticamente la forma de la Tierra para poder asignar coordenadas y realizar cálculos.",
             "Conectar sistemas informáticos a través de la red."
         ],
-        "ans": 2,
+        "correctAnswers": [
+            2
+        ],
         "exp": "Debido a la irregularidad del geoide, se utiliza un elipsoide (cuerpo matemático regular) como modelo para facilitar los cálculos de posicionamiento."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Fuentes de datos en los Sistemas de Información Geográfica:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>La única fuente válida y confiable de datos en un SIG son las imágenes satelitales obtenidas por teledetección.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Los datos pueden ser generados mediante el relevamiento de campo usando receptores GPS/GNSS.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>La Información Geográfica Voluntaria (ej. OpenStreetMap) es una fuente válida aportada por usuarios.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Las bases de datos estadísticas y la cartografía tradicional digitalizada también alimentan el SIG.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Fuentes de datos en los Sistemas de Información Geográfica",
+        "type": "multi",
         "options": [
-            "Opciones A, B y C son correctas.",
-            "Opciones B, C y D son correctas.",
-            "Solo las opciones B y D son correctas.",
-            "Todas las opciones son correctas."
+            "La única fuente válida y confiable de datos en un SIG son las imágenes satelitales obtenidas por teledetección.",
+            "Los datos pueden ser generados mediante el relevamiento de campo usando receptores GPS/GNSS.",
+            "La Información Geográfica Voluntaria (ej. OpenStreetMap) es una fuente válida aportada por usuarios.",
+            "Las bases de datos estadísticas y la cartografía tradicional digitalizada también alimentan el SIG."
         ],
-        "ans": 1,
+        "correctAnswers": [
+            1,
+            2,
+            3
+        ],
         "exp": "La opción A es la clásica trampa del parcial; los datos de un SIG provienen de múltiples fuentes, no solo de satélites."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Sobre el formato Vectorial de información geográfica:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Representa la realidad mediante tres expresiones geométricas básicas: puntos, líneas y polígonos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>La realidad deberá ser representada por una malla regular formada por píxeles o celdas.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Cada entidad vectorial (como un polígono) suele tener atributos asociados almacenados en una tabla.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>El formato Shapefile (.shp) y el GeoPackage (.gpkg) son extensiones propias de este modelo.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Sobre el formato Vectorial de información geográfica",
+        "type": "multi",
         "options": [
-            "Opciones A, B y D son correctas.",
-            "Solo las opciones A y C son correctas.",
-            "Opciones A, C y D son correctas.",
-            "Todas las opciones son correctas."
+            "Representa la realidad mediante tres expresiones geométricas básicas: puntos, líneas y polígonos.",
+            "La realidad deberá ser representada por una malla regular formada por píxeles o celdas.",
+            "Cada entidad vectorial (como un polígono) suele tener atributos asociados almacenados en una tabla.",
+            "El formato Shapefile (.shp) y el GeoPackage (.gpkg) son extensiones propias de este modelo."
         ],
-        "ans": 2,
+        "correctAnswers": [
+            0,
+            2,
+            3
+        ],
         "exp": "La opción B describe exactamente al formato Ráster, no al Vectorial."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Sobre el formato Ráster:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Es el formato ideal para almacenar datos que varían de forma continua en el territorio, como la altimetría o la temperatura.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Su estructura básica es una rejilla regular dividida en filas y columnas donde cada celda registra un valor numérico.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>En este formato no se emplean puntos, líneas y áreas para definir la geometría.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>El formato GeoTIFF es el estándar más utilizado y permite incrustar información de georreferenciación.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Sobre el formato Ráster",
+        "type": "multi",
         "options": [
-            "Opciones A, B y D son correctas.",
-            "Opciones A y B son correctas, pero C es falsa.",
-            "Opciones B, C y D son correctas.",
-            "Todas las opciones (A, B, C y D) son correctas."
+            "Es el formato ideal para almacenar datos que varían de forma continua en el territorio, como la altimetría o la temperatura.",
+            "Su estructura básica es una rejilla regular dividida en filas y columnas donde cada celda registra un valor numérico.",
+            "En este formato no se emplean puntos, líneas y áreas para definir la geometría.",
+            "El formato GeoTIFF es el estándar más utilizado y permite incrustar información de georreferenciación."
         ],
-        "ans": 3,
+        "correctAnswers": [
+            0,
+            1,
+            2,
+            3
+        ],
         "exp": "Todas las afirmaciones corresponden a las propiedades fundamentales, usos y formatos del modelo matricial/ráster vistos en la teoría."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Modelos de la Tierra: Geoide y Elipsoide:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>El geoide es la forma física real e irregular de la Tierra, coincidente con los mares en calma prolongados bajo los continentes.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>El geoide y el elipsoide son figuras idénticas que coinciden perfectamente en todos los puntos del planeta.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>El elipsoide es un modelo matemático tridimensional y regular utilizado para simplificar la forma terrestre y realizar cálculos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>La Geodesia es la ciencia que define y estudia estos modelos de la superficie terrestre.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Modelos de la Tierra: Geoide y Elipsoide",
+        "type": "multi",
         "options": [
-            "Opciones A, C y D son correctas.",
-            "Opciones A, B y C son correctas.",
-            "Solo las opciones A y C son correctas.",
-            "Todas las opciones son correctas."
+            "El geoide es la forma física real e irregular de la Tierra, coincidente con los mares en calma prolongados bajo los continentes.",
+            "El geoide y el elipsoide son figuras idénticas que coinciden perfectamente en todos los puntos del planeta.",
+            "El elipsoide es un modelo matemático tridimensional y regular utilizado para simplificar la forma terrestre y realizar cálculos.",
+            "La Geodesia es la ciencia que define y estudia estos modelos de la superficie terrestre."
         ],
-        "ans": 0,
+        "correctAnswers": [
+            0,
+            2,
+            3
+        ],
         "exp": "La opción B es falsa; el geoide es irregular y el elipsoide es una simplificación matemática, por lo que nunca coinciden perfectamente en todas partes."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Sobre Datum y Sistemas de Referencia:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>El Datum es un sistema de referencia espacial que describe la forma y tamaño de la Tierra estableciendo el origen de coordenadas.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>El Datum global más destacado es el WGS 84, cuyo centro coincide con el centro de masas terrestre y es usado por el GPS.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>El objetivo de un Datum local es hacer que el elipsoide se ajuste de la mejor manera al geoide en una región geográfica específica.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>El Datum es exactamente lo mismo que una proyección cartográfica.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Sobre Datum y Sistemas de Referencia",
+        "type": "multi",
         "options": [
-            "Opciones A, B y D son correctas.",
-            "Opciones A, B y C son correctas.",
-            "Solo las opciones B y C son correctas.",
-            "Todas las opciones son correctas."
+            "El Datum es un sistema de referencia espacial que describe la forma y tamaño de la Tierra estableciendo el origen de coordenadas.",
+            "El Datum global más destacado es el WGS 84, cuyo centro coincide con el centro de masas terrestre y es usado por el GPS.",
+            "El objetivo de un Datum local es hacer que el elipsoide se ajuste de la mejor manera al geoide en una región geográfica específica.",
+            "El Datum es exactamente lo mismo que una proyección cartográfica."
         ],
-        "ans": 1,
+        "correctAnswers": [
+            0,
+            1,
+            2
+        ],
         "exp": "La opción D es falsa. El Datum define la referencia tridimensional de la Tierra, mientras que la proyección es el método para pasar de esa figura curva a un plano bidimensional."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Sistemas de localización y Coordenadas:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Las coordenadas geográficas utilizan magnitudes angulares: latitud y longitud.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>La latitud indica qué tan al Norte o al Sur del Ecuador se encuentra un punto, variando de 0° a 90°.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Las coordenadas geográficas son ideales para realizar cálculos planimétricos exactos de áreas en metros.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Las coordenadas cartesianas o proyectadas se expresan en unidades lineales (generalmente metros) usando ejes ortogonales X e Y.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Sistemas de localización y Coordenadas",
+        "type": "multi",
         "options": [
-            "Opciones A, B y C son correctas.",
-            "Solo las opciones A y D son correctas.",
-            "Opciones A, B y D son correctas.",
-            "Todas las opciones son correctas."
+            "Las coordenadas geográficas utilizan magnitudes angulares: latitud y longitud.",
+            "La latitud indica qué tan al Norte o al Sur del Ecuador se encuentra un punto, variando de 0° a 90°.",
+            "Las coordenadas geográficas son ideales para realizar cálculos planimétricos exactos de áreas en metros.",
+            "Las coordenadas cartesianas o proyectadas se expresan en unidades lineales (generalmente metros) usando ejes ortogonales X e Y."
         ],
-        "ans": 2,
+        "correctAnswers": [
+            0,
+            1,
+            3
+        ],
         "exp": "La opción C es falsa. Las coordenadas angulares (geográficas) sufren convergencia en los polos, por lo que no son prácticas ni precisas para medir distancias métricas o áreas cartesianas."
     },
     {
         "q": "¿Cómo mitiga el sistema Gauss-Krüger argentino las grandes distorsiones que se generarían al proyectar todo el país?",
+        "type": "single",
         "options": [
             "Divide el territorio nacional en 7 fajas meridianas estrechas de 3° de ancho de longitud.",
             "Utiliza 60 husos de 6 grados de ancho, al igual que el sistema global UTM.",
             "Elimina la representación de la Patagonia.",
             "Proyecta todo el territorio sobre un cono tangente."
         ],
-        "ans": 0,
+        "correctAnswers": [
+            0
+        ],
         "exp": "A diferencia de UTM, el IGN divide a la Argentina en 7 fajas (numeradas del 1 al 7) para minimizar las deformaciones cartográficas."
     },
     {
         "q": "En una escala numérica (ej: 1:50.000), ¿qué ocurre si el denominador es más grande (ej: 1:1.000.000)?",
+        "type": "single",
         "options": [
             "El mapa muestra un área menor con muchísimo más nivel de detalle.",
             "La escala se considera 'mayor' y representa lotes urbanos.",
             "La reducción del terreno es mayor, por lo tanto, la escala es 'menor' y muestra menos detalle.",
             "El mapa deja de estar georreferenciado."
         ],
-        "ans": 2,
+        "correctAnswers": [
+            2
+        ],
         "exp": "Cuanto mayor es el denominador, más veces se ha achicado la realidad para entrar en el papel. Por ende, muestra áreas más extensas pero con menor detalle (escala menor)."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Tipos y distorsiones de Proyecciones Cartográficas:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Toda proyección cartográfica genera algún tipo de distorsión porque es imposible pasar una superficie esférica a un plano de forma perfecta.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Las proyecciones pueden clasificarse geométricamente en cilíndricas, cónicas y acimutales.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>La famosa proyección de Mercator es un claro ejemplo de proyección cónica.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Las proyecciones acimutales se realizan sobre un plano tangente a la esfera terrestre.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Tipos y distorsiones de Proyecciones Cartográficas",
+        "type": "multi",
         "options": [
-            "Opciones A, B y D son correctas.",
-            "Opciones A, B y C son correctas.",
-            "Solo las opciones B y D son correctas.",
-            "Todas las opciones son correctas."
+            "Toda proyección cartográfica genera algún tipo de distorsión porque es imposible pasar una superficie esférica a un plano de forma perfecta.",
+            "Las proyecciones pueden clasificarse geométricamente en cilíndricas, cónicas y acimutales.",
+            "La famosa proyección de Mercator es un claro ejemplo de proyección cónica.",
+            "Las proyecciones acimutales se realizan sobre un plano tangente a la esfera terrestre."
         ],
-        "ans": 0,
+        "correctAnswers": [
+            0,
+            1,
+            3
+        ],
         "exp": "La opción C es falsa. Mercator es históricamente una proyección de tipo cilíndrica."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Proyección Gauss-Krüger:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Es un modelo de proyección cilíndrica transversa conforme utilizado como sistema oficial en Argentina por el IGN.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Divide el territorio argentino en 7 fajas meridianas de 3 grados de ancho de longitud.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Para evitar trabajar con coordenadas cartesianas negativas, al eje Y (meridiano central) se le suma un Falso Este de 500.000 metros.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Divide todo el globo terrestre en 60 husos de 6 grados, al igual que el sistema global UTM.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Proyección Gauss-Krüger",
+        "type": "multi",
         "options": [
-            "Opciones A, B y D son correctas.",
-            "Opciones B, C y D son correctas.",
-            "Opciones A, B y C son correctas.",
-            "Todas las opciones son correctas."
+            "Es un modelo de proyección cilíndrica transversa conforme utilizado como sistema oficial en Argentina por el IGN.",
+            "Divide el territorio argentino en 7 fajas meridianas de 3 grados de ancho de longitud.",
+            "Para evitar trabajar con coordenadas cartesianas negativas, al eje Y (meridiano central) se le suma un Falso Este de 500.000 metros.",
+            "Divide todo el globo terrestre en 60 husos de 6 grados, al igual que el sistema global UTM."
         ],
-        "ans": 2,
+        "correctAnswers": [
+            0,
+            1,
+            2
+        ],
         "exp": "La opción D describe al sistema global UTM, no a la variante argentina Gauss-Krüger que usa fajas de 3 grados."
     },
     {
         "q": "¿Hacia dónde apuntan las agujas de las brújulas en cualquier lugar de la Tierra?",
+        "type": "single",
         "options": [
             "Hacia el Norte Geográfico, determinado por el eje de rotación de la Tierra.",
             "Hacia el Norte de Cuadrícula definido por el meridiano central de la proyección.",
             "Hacia el Norte Magnético, el cual cambia de posición continuamente.",
             "Hacia el Ecuador."
         ],
-        "ans": 2,
+        "correctAnswers": [
+            2
+        ],
         "exp": "Las brújulas señalan el Norte Magnético, generado por el núcleo de la Tierra. Este no coincide con el Norte Geográfico y está en constante desplazamiento."
     },
     {
         "q": "¿Qué es la 'Declinación Magnética'?",
+        "type": "single",
         "options": [
             "La pérdida de señal GPS cuando hay nubes densas.",
             "El ángulo formado entre la recta del Norte Geográfico y la recta del Norte Magnético.",
             "La distorsión que sufren las formas en los polos usando Mercator.",
             "El ángulo de convergencia entre meridianos paralelos."
         ],
-        "ans": 1,
+        "correctAnswers": [
+            1
+        ],
         "exp": "Se denomina declinación magnética al ángulo que separa el norte verdadero o geográfico del norte magnético indicado por la brújula en un punto dado."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Infraestructura de Datos Espaciales (IDE):</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Es un conjunto articulado de políticas, acuerdos, estándares, recursos humanos y tecnologías.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Es un Entorno de Desarrollo Integrado, o sea un software que facilita la programación y prueba de aplicaciones informáticas.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Su objetivo es facilitar el acceso, la gestión y el intercambio de la información espacial evitando la duplicación de esfuerzos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Sus principios incluyen la cooperación institucional, la interoperabilidad y la normalización.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Infraestructura de Datos Espaciales (IDE)",
+        "type": "multi",
         "options": [
-            "Opciones A, B y C son correctas.",
-            "Opciones A, C y D son correctas.",
-            "Solo las opciones A y D son correctas.",
-            "Todas las opciones son correctas."
+            "Es un conjunto articulado de políticas, acuerdos, estándares, recursos humanos y tecnologías.",
+            "Es un Entorno de Desarrollo Integrado, o sea un software que facilita la programación y prueba de aplicaciones informáticas.",
+            "Su objetivo es facilitar el acceso, la gestión y el intercambio de la información espacial evitando la duplicación de esfuerzos.",
+            "Sus principios incluyen la cooperación institucional, la interoperabilidad y la normalización."
         ],
-        "ans": 1,
+        "correctAnswers": [
+            0,
+            2,
+            3
+        ],
         "exp": "La opción B es la clásica trampa que cruza las siglas de la informática (IDE de programación) con la geomática; en SIG, es una infraestructura territorial."
     },
     {
         "q": "Un archivo con extensión .SHP (Shapefile) desarrollado por ESRI se compone obligatoriamente de:",
+        "type": "single",
         "options": [
             "Un único archivo que guarda la geometría y los atributos a la vez.",
             "Varios archivos vinculados (como .shp, .shx, .dbf) que deben guardarse en la misma carpeta.",
             "Una imagen de mapa de bits (como un JPEG) más un archivo de texto.",
             "Celdas rectangulares que contienen valores de altitud."
         ],
-        "ans": 1,
+        "correctAnswers": [
+            1
+        ],
         "exp": "El estándar Shapefile no es un solo archivo. Requiere como mínimo el .shp (geometría), .shx (índice espacial) y .dbf (tabla de atributos)."
     },
     {
         "q": "Si en un sistema Gauss-Krüger observamos que a las ordenadas (Eje Y) se les suma un Falso Este de 500.000 metros, ¿cuál es la finalidad?",
+        "type": "single",
         "options": [
             "Ubicar el mapa exactamente en el Ecuador.",
             "Aumentar el nivel de detalle (escala) de la cartografía.",
             "Impedir que al trabajar al oeste del meridiano central se produzcan coordenadas cartesianas con valores negativos.",
             "Corregir la desviación del norte magnético."
         ],
-        "ans": 2,
+        "correctAnswers": [
+            2
+        ],
         "exp": "Para facilitar los cálculos matemáticos, se desplaza el origen 500.000 metros al Oeste, asegurando que todos los valores X dentro de la faja sean positivos."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Los tres Nortes en cartografía:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>El Norte Magnético es aquel hacia el cual apuntan las agujas de las brújulas y cambia su posición continuamente.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>El Norte Geográfico es fijo y está determinado por el eje de rotación de la Tierra.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>La convergencia de meridianos es el ángulo formado entre el Norte Geográfico y el Norte Magnético.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>El Norte de Cuadrícula es la dirección paralela al meridiano central del sistema de proyección utilizado.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Los tres Nortes en cartografía",
+        "type": "multi",
         "options": [
-            "Opciones A, B y C son correctas.",
-            "Opciones B, C y D son correctas.",
-            "Opciones A, B y D son correctas.",
-            "Todas las opciones son correctas."
+            "El Norte Magnético es aquel hacia el cual apuntan las agujas de las brújulas y cambia su posición continuamente.",
+            "El Norte Geográfico es fijo y está determinado por el eje de rotación de la Tierra.",
+            "La convergencia de meridianos es el ángulo formado entre el Norte Geográfico y el Norte Magnético.",
+            "El Norte de Cuadrícula es la dirección paralela al meridiano central del sistema de proyección utilizado."
         ],
-        "ans": 2,
+        "correctAnswers": [
+            0,
+            1,
+            3
+        ],
         "exp": "La opción C es falsa. El ángulo entre el Norte Geográfico y el Magnético se llama Declinación Magnética. La Convergencia de Meridianos involucra al Norte de Cuadrícula."
     },
     {
         "q": "¿Qué estándar o sistema global (Datum) es utilizado por defecto por los dispositivos de Posicionamiento Global (GPS)?",
+        "type": "single",
         "options": [
             "POSGAR 2007",
             "Campo Inchauspe 1969",
             "WGS 84 (World Geodetic System 1984)",
             "Gauss-Krüger"
         ],
-        "ans": 2,
+        "correctAnswers": [
+            2
+        ],
         "exp": "El WGS 84 es el Datum geocéntrico estándar global sobre el cual operan los satélites GPS."
     },
     {
         "q": "Dentro de las proyecciones cartográficas, ¿cuál es la característica de las proyecciones Acimutales (o Planas)?",
+        "type": "single",
         "options": [
             "Utilizan un cilindro como figura auxiliar envolviendo la Tierra por el Ecuador.",
             "Se construyen mediante un plano tangente que toca la esfera en un único punto.",
             "Dividen la Tierra en 60 husos transversales.",
             "Los meridianos son líneas rectas concurrentes y los paralelos círculos concéntricos."
         ],
-        "ans": 1,
+        "correctAnswers": [
+            1
+        ],
         "exp": "Las proyecciones acimutales proyectan la Tierra sobre un plano tangente a un punto, preservando fielmente los acimuts (direcciones) desde dicho centro."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Metadatos:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Se definen analíticamente como los 'datos sobre los datos', aportando contexto, origen y calidad a la capa geográfica.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Resultan indispensables para que un analista evalúe la confiabilidad técnica antes de utilizarlos en proyectos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Su función principal es almacenar las geometrías de los polígonos que no entran en un shapefile.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Deben documentar características como el organismo responsable, fecha, sistema de coordenadas y escala.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Metadatos",
+        "type": "multi",
         "options": [
-            "Opciones A, B y D son correctas.",
-            "Opciones A, B y C son correctas.",
-            "Solo las opciones A y B son correctas.",
-            "Todas las opciones son correctas."
+            "Se definen analíticamente como los 'datos sobre los datos', aportando contexto, origen y calidad a la capa geográfica.",
+            "Resultan indispensables para que un analista evalúe la confiabilidad técnica antes de utilizarlos en proyectos.",
+            "Su función principal es almacenar las geometrías de los polígonos que no entran en un shapefile.",
+            "Deben documentar características como el organismo responsable, fecha, sistema de coordenadas y escala."
         ],
-        "ans": 0,
+        "correctAnswers": [
+            0,
+            1,
+            3
+        ],
         "exp": "La opción C es falsa. Los metadatos no guardan geometrías, sino descripciones documentales y parámetros de calidad."
     },
     {
         "q": "¿Qué permite hacer la 'Calculadora de Campos' en el software QGIS?",
+        "type": "single",
         "options": [
             "Descargar imágenes satelitales de alta resolución de Google Earth.",
             "Generar nuevas columnas en la tabla de atributos ejecutando funciones espaciales o matemáticas (como $length o $area).",
             "Convertir el Norte Magnético a Norte Geográfico.",
             "Publicar automáticamente mapas en un servidor WMS."
         ],
-        "ans": 1,
+        "correctAnswers": [
+            1
+        ],
         "exp": "La calculadora de campos es la herramienta analítica para manipular la tabla de atributos, calculando áreas, longitudes o concatenando cadenas de texto."
     },
     {
         "q": "Si un archivo CSV solo contiene tablas de datos poblacionales sin ninguna columna referida a coordenadas (como Latitud/Longitud o WKT), en QGIS:",
+        "type": "single",
         "options": [
             "Se generará automáticamente una capa vectorial de polígonos.",
             "Dará error y cerrará el programa inmediatamente.",
             "Se incorporará exclusivamente como una tabla de atributos alfanumérica sin renderizar geometría en el mapa.",
             "El programa adivinará la ubicación basándose en los nombres de las ciudades."
         ],
-        "ans": 2,
+        "correctAnswers": [
+            2
+        ],
         "exp": "Sin coordenadas explícitas, el SIG no puede geolocalizar los registros, por lo que el CSV entra simplemente como una tabla relacional no espacial."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Estándares OGC e Interoperabilidad:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>La interoperabilidad permite que sistemas informáticos heterogéneos se comuniquen e intercambien procesos sin trabas.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>El OGC (Open Geospatial Consortium) es la entidad que elabora los estándares técnicos para garantizar dicha comunicación.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>El OGC define los vocabularios y protocolos (como WMS o WFS) para que un cliente y servidor hablen un lenguaje común.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>La interoperabilidad obliga a todos los organismos públicos a comprar exactamente la misma marca comercial de software SIG.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Estándares OGC e Interoperabilidad",
+        "type": "multi",
         "options": [
-            "Opciones A, B y D son correctas.",
-            "Opciones A, B y C son correctas.",
-            "Solo las opciones B y C son correctas.",
-            "Todas las opciones son correctas."
+            "La interoperabilidad permite que sistemas informáticos heterogéneos se comuniquen e intercambien procesos sin trabas.",
+            "El OGC (Open Geospatial Consortium) es la entidad que elabora los estándares técnicos para garantizar dicha comunicación.",
+            "El OGC define los vocabularios y protocolos (como WMS o WFS) para que un cliente y servidor hablen un lenguaje común.",
+            "La interoperabilidad obliga a todos los organismos públicos a comprar exactamente la misma marca comercial de software SIG."
         ],
-        "ans": 1,
+        "correctAnswers": [
+            0,
+            1,
+            2
+        ],
         "exp": "La opción D es lo contrario al concepto: la interoperabilidad busca precisamente que diferentes plataformas y marcas puedan entenderse sin requerir homogeneidad comercial."
     },
     {
         "q": "¿Qué rol juega la Información Geográfica Voluntaria (ej. OpenStreetMap) en los SIG modernos?",
+        "type": "single",
         "options": [
             "Es un archivo histórico obsoleto que ya no se utiliza.",
             "Representa un pilar importante alimentado por las aportaciones libres de los usuarios en línea para nutrir políticas de Datos Abiertos.",
             "Es la única fuente autorizada por el IGN para digitalizar rutas.",
             "Es un formato de archivo cerrado y privativo similar al KML."
         ],
-        "ans": 1,
+        "correctAnswers": [
+            1
+        ],
         "exp": "La IGV (VGI en inglés) ha cobrado vital importancia gracias al aporte colaborativo y funciona como una enorme base de Datos Abiertos."
     },
     {
         "q": "La conocida Proyección de Mercator se clasifica como:",
+        "type": "single",
         "options": [
             "Acimutal Polar.",
             "Cónica Conforme.",
             "Cilíndrica.",
             "Ninguna de las anteriores, es un Datum."
         ],
-        "ans": 2,
+        "correctAnswers": [
+            2
+        ],
         "exp": "Diseñada por Gerardus Mercator, es la proyección cilíndrica más famosa, manteniendo los ángulos rectos entre paralelos y meridianos (conforme) pero distorsionando fuertemente las áreas hacia los polos."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Diferencias entre servicios WMS y WFS:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>El WMS (Web Map Service) devuelve la cartografía renderizada en un formato de imagen estándar (ej. PNG, JPEG).</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>El WFS (Web Feature Service) permite acceder a los datos vectoriales subyacentes junto a todos sus atributos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>El WFS, en sus versiones transaccionales, permite crear, editar y eliminar geometrías a través de la red.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>El WMS permite al usuario descargar directamente el shapefile original para modificar su topología.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Diferencias entre servicios WMS y WFS",
+        "type": "multi",
         "options": [
-            "Opciones A, B y D son correctas.",
-            "Opciones B, C y D son correctas.",
-            "Opciones A, B y C son correctas.",
-            "Todas las opciones son correctas."
+            "El WMS (Web Map Service) devuelve la cartografía renderizada en un formato de imagen estándar (ej. PNG, JPEG).",
+            "El WFS (Web Feature Service) permite acceder a los datos vectoriales subyacentes junto a todos sus atributos.",
+            "El WFS, en sus versiones transaccionales, permite crear, editar y eliminar geometrías a través de la red.",
+            "El WMS permite al usuario descargar directamente el shapefile original para modificar su topología."
         ],
-        "ans": 2,
+        "correctAnswers": [
+            0,
+            1,
+            2
+        ],
         "exp": "La opción D es la trampa clásica. El WMS solo muestra 'fotos' (visualización); para interactuar o extraer vectores reales se utiliza el WFS."
     },
     {
         "q": "¿Qué significa que los sistemas SIG modernos promuevan la 'Interoperabilidad'?",
+        "type": "single",
         "options": [
             "Que todos los usuarios deben usar obligatoriamente el mismo software comercial.",
             "Que solo se pueden usar bases de datos físicas (locales) sin conexión a internet.",
             "Que sistemas informáticos heterogéneos pueden comunicarse, ejecutar y compartir datos sin que el usuario conozca las características internas del otro sistema.",
             "Que los vectores se transforman automáticamente en imágenes raster al acercar el zoom."
         ],
-        "ans": 2,
+        "correctAnswers": [
+            2
+        ],
         "exp": "La interoperabilidad, facilitada por estándares del OGC, permite que QGIS, ArcGIS y servicios web 'hablen el mismo idioma' de forma transparente."
     },
     {
         "q": "Respecto a los formatos espaciales, el GeoPackage (.gpkg) se destaca porque:",
+        "type": "single",
         "options": [
             "Solo puede almacenar un archivo KML a la vez.",
             "Está quedando obsoleto y fue reemplazado por el Shapefile.",
             "Es un formato moderno basado en bases de datos que permite guardar múltiples capas vectoriales y raster en un único archivo.",
             "No soporta proyecciones cartográficas ni tablas de atributos."
         ],
-        "ans": 2,
+        "correctAnswers": [
+            2
+        ],
         "exp": "GeoPackage es el formato abierto moderno por excelencia, actuando como un contenedor SQLite capaz de albergar toda la estructura de un proyecto (vectores y raster) en un solo fichero."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Otros Geoservicios (WCS y CSW):</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>El WCS (Web Coverage Service) sirve para acceder a coberturas continuas, como variables raster e imágenes.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>El CSW (Catalog Service for Web) es el protocolo estándar para buscar y localizar información mediante catálogos de metadatos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>El CSW es el servicio encargado de transformar las coordenadas geográficas de WGS84 a Gauss-Krüger.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Estos geoservicios utilizan peticiones vía web, siendo una alternativa eficiente a la descarga de pesados discos duros.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Otros Geoservicios (WCS y CSW)",
+        "type": "multi",
         "options": [
-            "Opciones A, B y D son correctas.",
-            "Opciones A, B y C son correctas.",
-            "Solo las opciones A y B son correctas.",
-            "Todas las opciones son correctas."
+            "El WCS (Web Coverage Service) sirve para acceder a coberturas continuas, como variables raster e imágenes.",
+            "El CSW (Catalog Service for Web) es el protocolo estándar para buscar y localizar información mediante catálogos de metadatos.",
+            "El CSW es el servicio encargado de transformar las coordenadas geográficas de WGS84 a Gauss-Krüger.",
+            "Estos geoservicios utilizan peticiones vía web, siendo una alternativa eficiente a la descarga de pesados discos duros."
         ],
-        "ans": 0,
+        "correctAnswers": [
+            0,
+            1,
+            3
+        ],
         "exp": "La opción C es falsa; el CSW es estrictamente un buscador de metadatos, no un motor de conversión o transformación de sistemas de coordenadas."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Escala y resoluciones cartográficas:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>La escala cartográfica es una razón de proporcionalidad entre una medida en el mapa y la realidad.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Una escala numérica 1:1.000.000 se considera 'mayor escala' (y por ende de mayor detalle) que un mapa 1:1.500.000.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Cuanto mayor es el denominador de la escala, mayor es la reducción que sufre el terreno.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>La escala gráfica pierde su utilidad si el mapa es escaneado o fotocopiado y cambia de tamaño físico.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Escala y resoluciones cartográficas",
+        "type": "multi",
         "options": [
-            "Opciones A, B y D son correctas.",
-            "Opciones A, C y D son correctas.",
-            "Opciones A, B y C son correctas.",
-            "Todas las opciones son correctas."
+            "La escala cartográfica es una razón de proporcionalidad entre una medida en el mapa y la realidad.",
+            "Una escala numérica 1:1.000.000 se considera 'mayor escala' (y por ende de mayor detalle) que un mapa 1:1.500.000.",
+            "Cuanto mayor es el denominador de la escala, mayor es la reducción que sufre el terreno.",
+            "La escala gráfica pierde su utilidad si el mapa es escaneado o fotocopiado y cambia de tamaño físico."
         ],
-        "ans": 2,
+        "correctAnswers": [
+            0,
+            1,
+            2
+        ],
         "exp": "La opción D es un error conceptual: justamente la ventaja de la escala gráfica (la barrita dibujada) es que si fotocopias/amplías el mapa, la barra crece en proporción, manteniendo su validez."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Geoportal vs Visualizador:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Ambos son interfaces web diseñadas para interactuar con datos en el marco de una IDE.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Un Visualizador web permite navegar, hacer paneos y ver el mapa, pero no permite la descarga de los datos crudos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>El Geoportal es más avanzado porque, además de visualizar, incluye catálogos, enlaces WFS y habilita la descarga de capas en formatos nativos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>El Visualizador del IGN es funcionalmente idéntico a un Geoportal porque ambos permiten extraer .shp y .csv libremente.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Geoportal vs Visualizador",
+        "type": "multi",
         "options": [
-            "Opciones A, B y D son correctas.",
-            "Opciones A, B y C son correctas.",
-            "Solo las opciones B y C son correctas.",
-            "Todas las opciones son correctas."
+            "Ambos son interfaces web diseñadas para interactuar con datos en el marco de una IDE.",
+            "Un Visualizador web permite navegar, hacer paneos y ver el mapa, pero no permite la descarga de los datos crudos.",
+            "El Geoportal es más avanzado porque, además de visualizar, incluye catálogos, enlaces WFS y habilita la descarga de capas en formatos nativos.",
+            "El Visualizador del IGN es funcionalmente idéntico a un Geoportal porque ambos permiten extraer .shp y .csv libremente."
         ],
-        "ans": 1,
+        "correctAnswers": [
+            0,
+            1,
+            2
+        ],
         "exp": "La opción D es falsa, ya que el texto distingue explícitamente al visualizador (que restringe descargas) del geoportal (que permite el acceso completo)."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Operaciones en herramientas SIG (QGIS):</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>En QGIS, si un proyecto usa proyecciones geográficas puras (EPSG 4326), se verán fuertes achatamientos horizontales al acercarse a los polos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>La 'Calculadora de Campos' es fundamental para generar nuevas columnas alfanuméricas o calcular áreas directas ($area) sobre polígonos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Es posible conectar directamente mapas base comerciales usando complementos como Quick Map Services sin sobrecargar el disco duro.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Al cargar un archivo CSV de texto, es imposible georreferenciarlo si no está convertido previamente a formato Shapefile en otro programa.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Operaciones en herramientas SIG (QGIS)",
+        "type": "multi",
         "options": [
-            "Opciones A, B y D son correctas.",
-            "Opciones A, C y D son correctas.",
-            "Opciones A, B y C son correctas.",
-            "Todas las opciones son correctas."
+            "En QGIS, si un proyecto usa proyecciones geográficas puras (EPSG 4326), se verán fuertes achatamientos horizontales al acercarse a los polos.",
+            "La 'Calculadora de Campos' es fundamental para generar nuevas columnas alfanuméricas o calcular áreas directas ($area) sobre polígonos.",
+            "Es posible conectar directamente mapas base comerciales usando complementos como Quick Map Services sin sobrecargar el disco duro.",
+            "Al cargar un archivo CSV de texto, es imposible georreferenciarlo si no está convertido previamente a formato Shapefile en otro programa."
         ],
-        "ans": 2,
+        "correctAnswers": [
+            0,
+            1,
+            2
+        ],
         "exp": "La opción D es falsa; QGIS es perfectamente capaz de leer un CSV puro y, si este tiene columnas 'X' e 'Y' o formato WKT, lo dibuja como una capa de puntos espaciales al instante."
     },
     {
-        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Áreas de aplicación de la Tecnología SIG:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Gestión Pública: modernización catastral, planificación urbana e impacto de grandes obras de infraestructura.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Geomarketing: optimización logística, mapas de distribución y localización óptima basada en el perfil territorial de los clientes.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Utilities: administración topológica de redes de conducción críticas, como tendidos eléctricos, gasoductos o fibra óptica.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Seguridad ciudadana: creación de mapas de calor para analizar la incidencia de homicidios por zonas barriales.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "q": "Áreas de aplicación de la Tecnología SIG",
+        "type": "multi",
         "options": [
-            "Solo las opciones A, B y C son correctas.",
-            "Opciones A, B y D son correctas.",
-            "Opciones B, C y D son correctas.",
-            "Todas las opciones (A, B, C y D) son correctas."
+            "Gestión Pública: modernización catastral, planificación urbana e impacto de grandes obras de infraestructura.",
+            "Geomarketing: optimización logística, mapas de distribución y localización óptima basada en el perfil territorial de los clientes.",
+            "Utilities: administración topológica de redes de conducción críticas, como tendidos eléctricos, gasoductos o fibra óptica.",
+            "Seguridad ciudadana: creación de mapas de calor para analizar la incidencia de homicidios por zonas barriales."
         ],
-        "ans": 3,
+        "correctAnswers": [
+            0,
+            1,
+            2,
+            3
+        ],
         "exp": "Todas las afirmaciones corresponden textualmente a los ejemplos empíricos listados de las aplicaciones transversales de los sistemas."
     }
 ];
 
         // Estado de la aplicación
-        let userAnswers = new Array(questions.length).fill(null);
-        let viewMode = 'all'; // 'all' (todas en simultáneo) o 'single' (una por una)
+        let userSelections = new Array(questions.length).fill(null).map(() => []);
+        let submittedAnswers = new Array(questions.length).fill(null);
+        let viewMode = 'all'; // 'all' (todas simultáneas) o 'single' (una por una)
         let currentSingleIndex = 0;
-        let currentFilter = 'all'; // 'all', 'pending', 'correct', 'incorrect'
+        let currentFilter = 'all'; // 'all', 'pending', 'submitted'
 
         function startQuiz(mode = 'all') {
             document.getElementById('start-screen').classList.add('hidden');
@@ -718,23 +866,47 @@
             }
         }
 
+        function calculateScore() {
+            let totalScore = 0;
+            let answeredCount = 0;
+            let perfectCount = 0;
+            let partialCount = 0;
+            let wrongCount = 0;
+
+            submittedAnswers.forEach((ans, idx) => {
+                if (ans !== null) {
+                    answeredCount++;
+                    totalScore += ans.score;
+                    if (ans.status === 'perfect') perfectCount++;
+                    else if (ans.status === 'partial') partialCount++;
+                    else wrongCount++;
+                }
+            });
+
+            return {
+                totalScore,
+                answeredCount,
+                perfectCount,
+                partialCount,
+                wrongCount,
+                pendingCount: questions.length - answeredCount
+            };
+        }
+
         function updateStats() {
-            const answeredCount = userAnswers.filter(a => a !== null).length;
-            const correctCount = userAnswers.filter(a => a && a.isCorrect).length;
-            const incorrectCount = userAnswers.filter(a => a && !a.isCorrect).length;
-            const pendingCount = questions.length - answeredCount;
+            const stats = calculateScore();
 
-            document.getElementById('stat-answered').innerText = `${answeredCount}/${questions.length}`;
-            document.getElementById('stat-correct').innerText = correctCount;
-            document.getElementById('stat-incorrect').innerText = incorrectCount;
+            document.getElementById('stat-answered').innerText = `${stats.answeredCount}/${questions.length}`;
+            document.getElementById('stat-correct').innerText = stats.perfectCount;
+            document.getElementById('stat-incorrect').innerText = stats.wrongCount;
 
-            document.getElementById('count-pending').innerText = pendingCount;
-            document.getElementById('count-correct').innerText = correctCount;
-            document.getElementById('count-incorrect').innerText = incorrectCount;
+            document.getElementById('count-pending').innerText = stats.pendingCount;
+            document.getElementById('count-correct').innerText = stats.perfectCount;
+            document.getElementById('count-incorrect').innerText = stats.wrongCount;
 
-            document.getElementById('score-badge').innerText = `${correctCount} / ${questions.length} pts`;
+            document.getElementById('score-badge').innerText = `${stats.totalScore.toFixed(1)} / ${questions.length} pts`;
 
-            const percentage = (answeredCount / questions.length) * 100;
+            const percentage = (stats.answeredCount / questions.length) * 100;
             document.getElementById('global-progress').style.width = `${percentage}%`;
         }
 
@@ -745,14 +917,21 @@
             questions.forEach((_, idx) => {
                 const btn = document.createElement('button');
                 btn.id = `grid-btn-${idx}`;
-                const answer = userAnswers[idx];
+                const ans = submittedAnswers[idx];
 
                 let baseClass = 'h-9 rounded-lg font-bold text-xs flex items-center justify-center transition-all border ';
 
-                if (answer === null) {
-                    baseClass += 'bg-slate-50 border-slate-200 text-slate-700 hover:border-blue-400 hover:bg-blue-50';
-                } else if (answer.isCorrect) {
+                if (ans === null) {
+                    const hasSelected = userSelections[idx] && userSelections[idx].length > 0;
+                    if (hasSelected) {
+                        baseClass += 'bg-blue-50 border-blue-300 text-blue-700 hover:bg-blue-100';
+                    } else {
+                        baseClass += 'bg-slate-50 border-slate-200 text-slate-700 hover:border-blue-400 hover:bg-blue-50';
+                    }
+                } else if (ans.status === 'perfect') {
                     baseClass += 'bg-emerald-500 border-emerald-600 text-white shadow-sm';
+                } else if (ans.status === 'partial') {
+                    baseClass += 'bg-amber-500 border-amber-600 text-white shadow-sm';
                 } else {
                     baseClass += 'bg-rose-500 border-rose-600 text-white shadow-sm';
                 }
@@ -763,7 +942,7 @@
 
                 btn.className = baseClass;
                 btn.innerHTML = `<span>${idx + 1}</span>`;
-                btn.title = `Pregunta ${idx + 1}: ${answer === null ? 'Pendiente' : (answer.isCorrect ? 'Correcta' : 'Incorrecta')}`;
+                btn.title = `Pregunta ${idx + 1}: ${ans === null ? 'Pendiente' : ans.status}`;
                 btn.onclick = () => handleGridClick(idx);
 
                 grid.appendChild(btn);
@@ -790,7 +969,7 @@
         }
 
         function jumpToNextPending() {
-            const nextPending = userAnswers.findIndex(a => a === null);
+            const nextPending = submittedAnswers.findIndex(a => a === null);
             if (nextPending === -1) {
                 alert('¡Felicitaciones! Ya respondiste todas las preguntas.');
                 return;
@@ -798,87 +977,237 @@
             handleGridClick(nextPending);
         }
 
-        function buildQuestionCardHTML(q, idx) {
-            const answer = userAnswers[idx];
-            const hasAnswered = answer !== null;
-            const letters = ['A', 'B', 'C', 'D'];
+        function toggleOption(qIdx, optIdx) {
+            if (submittedAnswers[qIdx] !== null) return; // Ya enviada
 
-            let statusBadge = '';
-            if (!hasAnswered) {
-                statusBadge = '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 border border-slate-200">Pendiente</span>';
-            } else if (answer.isCorrect) {
-                statusBadge = '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">✓ Correcta (+1)</span>';
+            const q = questions[qIdx];
+            const current = userSelections[qIdx] || [];
+
+            if (q.type === 'single') {
+                // Selección única: reemplaza la selección
+                userSelections[qIdx] = [optIdx];
             } else {
-                statusBadge = '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-100 text-rose-800 border border-rose-300">✗ Incorrecta</span>';
+                // Selección múltiple: añade o quita la opción
+                const pos = current.indexOf(optIdx);
+                if (pos > -1) {
+                    current.splice(pos, 1);
+                } else {
+                    current.push(optIdx);
+                }
+                userSelections[qIdx] = current;
             }
 
-            let optionsHTML = '';
-            q.options.forEach((opt, optIdx) => {
-                let btnClass = 'option-btn w-full text-left p-3.5 sm:p-4 rounded-xl border-2 font-medium text-xs sm:text-sm flex items-start gap-3 ';
+            renderQuestionCardElement(qIdx);
+            renderQuestionGrid();
+        }
 
-                if (!hasAnswered) {
-                    btnClass += 'border-slate-200 bg-white hover:border-blue-500 hover:bg-blue-50/35 text-slate-700 cursor-pointer';
-                } else {
-                    btnClass += 'cursor-default ';
-                    if (optIdx === answer.selectedIndex) {
-                        btnClass += answer.isCorrect ? 'correct-opt shadow-md' : 'wrong-opt shadow-md';
-                    } else if (optIdx === q.ans) {
-                        btnClass += 'reveal-correct';
+        function submitAnswer(qIdx) {
+            if (submittedAnswers[qIdx] !== null) return;
+
+            const selected = userSelections[qIdx] || [];
+            if (selected.length === 0) {
+                alert('Por favor seleccioná al menos una opción (A, B, C o D) antes de enviar.');
+                return;
+            }
+
+            const q = questions[qIdx];
+            const correctSet = new Set(q.correctAnswers);
+            const selectedSet = new Set(selected);
+
+            // Calcular aciertos y fallos
+            let correctHits = 0;
+            let wrongHits = 0;
+
+            selected.forEach(opt => {
+                if (correctSet.has(opt)) correctHits++;
+                else wrongHits++;
+            });
+
+            const totalCorrect = q.correctAnswers.length;
+            const missedCount = totalCorrect - correctHits;
+
+            let score = 0;
+            let status = 'wrong';
+
+            if (correctHits === totalCorrect && wrongHits === 0) {
+                score = 1.0;
+                status = 'perfect';
+            } else if (correctHits > 0 && wrongHits === 0) {
+                // Parcial sin errores
+                score = parseFloat((correctHits / totalCorrect).toFixed(2));
+                status = 'partial';
+            } else if (correctHits > wrongHits) {
+                // Parcial con algún error pero positivo
+                score = parseFloat(((correctHits - wrongHits) / totalCorrect).toFixed(2));
+                if (score < 0) score = 0;
+                status = score > 0 ? 'partial' : 'wrong';
+            } else {
+                score = 0;
+                status = 'wrong';
+            }
+
+            submittedAnswers[qIdx] = {
+                selected: [...selected],
+                correctHits,
+                wrongHits,
+                totalCorrect,
+                missedCount,
+                score,
+                status
+            };
+
+            updateStats();
+            renderQuestionGrid();
+            renderQuestionCardElement(qIdx);
+        }
+
+        function renderQuestionCardElement(qIdx) {
+            const q = questions[qIdx];
+            if (viewMode === 'all') {
+                const card = document.getElementById(`question-card-${qIdx}`);
+                if (card) {
+                    const temp = document.createElement('div');
+                    temp.innerHTML = buildQuestionCardHTML(q, qIdx);
+                    card.replaceWith(temp.firstElementChild);
+                }
+            } else {
+                renderSingleQuestion();
+            }
+        }
+
+        function buildQuestionCardHTML(q, idx) {
+            const isSubmitted = submittedAnswers[idx] !== null;
+            const submission = submittedAnswers[idx];
+            const selected = userSelections[idx] || [];
+            const letters = ['A', 'B', 'C', 'D'];
+
+            // Badges
+            const typeBadge = q.type === 'multi' 
+                ? '<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200">Múltiples correctas (A, B, C y/o D)</span>'
+                : '<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-600 border border-slate-200">Opción Única</span>';
+
+            let statusBadge = '';
+            if (!isSubmitted) {
+                statusBadge = '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 border border-slate-200">Pendiente de envío</span>';
+            } else if (submission.status === 'perfect') {
+                statusBadge = '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300">✓ Perfecta (+1.0 pt)</span>';
+            } else if (submission.status === 'partial') {
+                statusBadge = `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-300">⚡ Parcial (+${submission.score} pts)</span>`;
+            } else {
+                statusBadge = '<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-rose-100 text-rose-800 border border-rose-300">✗ Incorrecta (0 pts)</span>';
+            }
+
+            // Opciones HTML
+            let optionsHTML = '';
+            q.options.forEach((optText, optIdx) => {
+                const isSelected = selected.includes(optIdx);
+                const isCorrect = q.correctAnswers.includes(optIdx);
+
+                let rowClass = 'w-full text-left p-3.5 sm:p-4 rounded-xl border-2 font-medium text-xs sm:text-sm flex items-start gap-3 transition-all ';
+                let letterBadgeClass = 'w-7 h-7 rounded-lg text-xs font-bold border flex items-center justify-center shrink-0 ';
+                let tagHTML = '';
+
+                if (!isSubmitted) {
+                    if (isSelected) {
+                        rowClass += 'border-blue-600 bg-blue-50/70 text-slate-900 shadow-sm cursor-pointer';
+                        letterBadgeClass += 'bg-blue-600 border-blue-600 text-white';
                     } else {
-                        btnClass += 'border-slate-200 bg-slate-50 text-slate-400 opacity-60';
+                        rowClass += 'border-slate-200 bg-white hover:border-blue-300 hover:bg-slate-50 text-slate-700 cursor-pointer';
+                        letterBadgeClass += 'bg-slate-100 border-slate-300 text-slate-600';
+                    }
+                } else {
+                    // Estados post-envío
+                    if (isCorrect && isSelected) {
+                        rowClass += 'bg-emerald-50 border-emerald-500 text-emerald-950 font-semibold';
+                        letterBadgeClass += 'bg-emerald-600 border-emerald-600 text-white';
+                        tagHTML = '<span class="ml-auto shrink-0 text-[11px] font-bold px-2 py-0.5 rounded-md bg-emerald-200 text-emerald-900">✓ Correcta (la marcaste)</span>';
+                    } else if (isCorrect && !isSelected) {
+                        rowClass += 'bg-amber-50/70 border-amber-400 border-dashed text-amber-950 font-semibold';
+                        letterBadgeClass += 'bg-amber-500 border-amber-500 text-white';
+                        tagHTML = '<span class="ml-auto shrink-0 text-[11px] font-bold px-2 py-0.5 rounded-md bg-amber-200 text-amber-900">⚠ Era correcta (te faltó marcarla)</span>';
+                    } else if (!isCorrect && isSelected) {
+                        rowClass += 'bg-rose-50 border-rose-500 text-rose-950 font-semibold';
+                        letterBadgeClass += 'bg-rose-600 border-rose-600 text-white';
+                        tagHTML = '<span class="ml-auto shrink-0 text-[11px] font-bold px-2 py-0.5 rounded-md bg-rose-200 text-rose-900">✗ Incorrecta (la marcaste por error)</span>';
+                    } else {
+                        rowClass += 'bg-slate-50 border-slate-200 text-slate-400 opacity-60';
+                        letterBadgeClass += 'bg-slate-100 border-slate-300 text-slate-400';
+                        tagHTML = '<span class="ml-auto shrink-0 text-[11px] text-slate-400">✓ Falsa (no marcada)</span>';
                     }
                 }
 
-                const clickAttr = !hasAnswered ? `onclick="selectOption(${idx}, ${optIdx})"` : '';
-                const disabledAttr = hasAnswered ? 'disabled' : '';
+                const clickAction = !isSubmitted ? `onclick="toggleOption(${idx}, ${optIdx})"` : '';
 
                 optionsHTML += `
-                    <button ${clickAttr} ${disabledAttr} class="${btnClass}">
-                        <span class="inline-flex items-center justify-center w-6 h-6 rounded-lg text-xs font-bold border ${hasAnswered && optIdx === answer.selectedIndex ? 'border-white text-white' : 'border-slate-300 text-slate-500 bg-slate-100'}">
+                    <div ${clickAction} class="${rowClass}">
+                        <div class="${letterBadgeClass}">
                             ${letters[optIdx]}
-                        </span>
-                        <span class="flex-1 leading-snug">${opt}</span>
-                    </button>
+                        </div>
+                        <div class="flex-1 leading-snug pt-0.5">
+                            ${optText}
+                        </div>
+                        ${tagHTML}
+                    </div>
                 `;
             });
 
-            let feedbackHTML = '';
-            if (hasAnswered) {
-                if (answer.isCorrect) {
-                    feedbackHTML = `
-                        <div class="mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs sm:text-sm fade-in">
-                            <div class="flex items-start gap-2.5">
-                                <span class="text-base">🎉</span>
-                                <div>
-                                    <strong class="font-bold">¡Respuesta Correcta!</strong>
-                                    <p class="mt-0.5 text-emerald-800 leading-relaxed">${q.exp}</p>
-                                </div>
-                            </div>
+            // Action / Feedback Footer
+            let footerHTML = '';
+            if (!isSubmitted) {
+                const selectedCount = selected.length;
+                footerHTML = `
+                    <div class="mt-5 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
+                        <div class="text-xs text-slate-500 font-medium">
+                            <span>Has seleccionado: </span>
+                            <span class="font-bold text-slate-800">${selectedCount} opción(es)</span>
                         </div>
-                    `;
-                } else {
-                    feedbackHTML = `
-                        <div class="mt-4 p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-900 text-xs sm:text-sm fade-in">
-                            <div class="flex items-start gap-2.5">
-                                <span class="text-base">💡</span>
-                                <div>
-                                    <strong class="font-bold">Respuesta Incorrecta.</strong>
-                                    <p class="mt-0.5 text-rose-800 leading-relaxed">${q.exp}</p>
-                                </div>
-                            </div>
-                        </div>
-                    `;
+                        <button onclick="submitAnswer(${idx})" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-xl text-xs sm:text-sm shadow-md shadow-blue-500/20 transition-all flex items-center gap-2">
+                            <span>Enviar respuestas</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </button>
+                    </div>
+                `;
+            } else {
+                let bannerColor = 'bg-emerald-50 border-emerald-200 text-emerald-900';
+                let bannerTitle = '🎉 ¡Excelente! Respuesta perfecta';
+                let bannerIcon = '🏆';
+
+                if (submission.status === 'partial') {
+                    bannerColor = 'bg-amber-50 border-amber-200 text-amber-900';
+                    bannerTitle = `⚡ Respuesta Parcial: Acertaste ${submission.correctHits} de ${submission.totalCorrect} opciones correctas`;
+                    bannerIcon = '⚖️';
+                } else if (submission.status === 'wrong') {
+                    bannerColor = 'bg-rose-50 border-rose-200 text-rose-900';
+                    bannerTitle = `❌ Respuesta Incorrecta: Acertaste ${submission.correctHits} de ${submission.totalCorrect} opciones correctas`;
+                    bannerIcon = '💡';
                 }
+
+                footerHTML = `
+                    <div class="mt-5 space-y-3 fade-in">
+                        <div class="p-4 rounded-xl border ${bannerColor} text-xs sm:text-sm">
+                            <div class="flex items-start gap-2.5">
+                                <span class="text-lg">${bannerIcon}</span>
+                                <div class="flex-1">
+                                    <div class="font-bold">${bannerTitle} (+${submission.score} pts)</div>
+                                    <div class="mt-1 text-slate-700 leading-relaxed"><strong class="text-slate-900">Explicación oficial:</strong> ${q.exp}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
             }
 
             return `
                 <div id="question-card-${idx}" class="bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow transition-all p-5 sm:p-7 relative">
-                    <div class="flex items-center justify-between gap-2 mb-3">
-                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Pregunta ${idx + 1} de ${questions.length}</span>
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Pregunta ${idx + 1} de ${questions.length}</span>
+                            ${typeBadge}
+                        </div>
                         ${statusBadge}
                     </div>
 
-                    <h3 class="text-base sm:text-lg font-bold text-slate-800 mb-5 leading-snug">
+                    <h3 class="text-base sm:text-lg font-bold text-slate-800 mb-4 leading-snug">
                         ${q.q}
                     </h3>
 
@@ -886,7 +1215,7 @@
                         ${optionsHTML}
                     </div>
 
-                    ${feedbackHTML}
+                    ${footerHTML}
                 </div>
             `;
         }
@@ -897,12 +1226,12 @@
 
             let visibleCount = 0;
             questions.forEach((q, idx) => {
-                const answer = userAnswers[idx];
+                const ans = submittedAnswers[idx];
                 let isMatch = true;
 
-                if (currentFilter === 'pending' && answer !== null) isMatch = false;
-                if (currentFilter === 'correct' && (!answer || !answer.isCorrect)) isMatch = false;
-                if (currentFilter === 'incorrect' && (!answer || answer.isCorrect)) isMatch = false;
+                if (currentFilter === 'pending' && ans !== null) isMatch = false;
+                if (currentFilter === 'correct' && (!ans || ans.status !== 'perfect')) isMatch = false;
+                if (currentFilter === 'incorrect' && (!ans || ans.status === 'perfect')) isMatch = false;
 
                 if (isMatch) {
                     visibleCount++;
@@ -960,48 +1289,16 @@
             }
         }
 
-        function selectOption(questionIndex, selectedIndex) {
-            if (userAnswers[questionIndex] !== null) return;
-
-            const q = questions[questionIndex];
-            const isCorrect = (selectedIndex === q.ans);
-
-            userAnswers[questionIndex] = {
-                selectedIndex,
-                isCorrect
-            };
-
-            // Actualizar interfaz
-            updateStats();
-            renderQuestionGrid();
-
-            if (viewMode === 'all') {
-                // Actualizar únicamente la tarjeta seleccionada para evitar que la página salte
-                const card = document.getElementById(`question-card-${questionIndex}`);
-                if (card) {
-                    const temp = document.createElement('div');
-                    temp.innerHTML = buildQuestionCardHTML(q, questionIndex);
-                    card.replaceWith(temp.firstElementChild);
-                }
-            } else {
-                renderSingleQuestion();
-            }
-        }
-
         function showResults() {
-            const answeredCount = userAnswers.filter(a => a !== null).length;
-            const correctCount = userAnswers.filter(a => a && a.isCorrect).length;
-            const incorrectCount = userAnswers.filter(a => a && !a.isCorrect).length;
-            const unansweredCount = questions.length - answeredCount;
+            const stats = calculateScore();
+            const percentage = (stats.totalScore / questions.length) * 100;
 
-            const percentage = (correctCount / questions.length) * 100;
-
-            document.getElementById('modal-final-score').innerText = `${correctCount} / ${questions.length}`;
-            document.getElementById('modal-percentage').innerText = `${percentage.toFixed(0)}% de aciertos (${correctCount} de ${questions.length} puntos)`;
+            document.getElementById('modal-final-score').innerText = `${stats.totalScore.toFixed(1)} / ${questions.length}`;
+            document.getElementById('modal-percentage').innerText = `${percentage.toFixed(0)}% de aciertos (${stats.totalScore.toFixed(1)} de ${questions.length} puntos)`;
             
-            document.getElementById('modal-correct-count').innerText = correctCount;
-            document.getElementById('modal-incorrect-count').innerText = incorrectCount;
-            document.getElementById('modal-unanswered-count').innerText = unansweredCount;
+            document.getElementById('modal-correct-count').innerText = stats.perfectCount;
+            document.getElementById('modal-incorrect-count').innerText = stats.wrongCount;
+            document.getElementById('modal-unanswered-count').innerText = stats.pendingCount;
 
             const message = document.getElementById('modal-result-message');
             const icon = document.getElementById('modal-result-icon');
@@ -1029,7 +1326,8 @@
 
         function resetQuiz() {
             if (confirm('¿Estás seguro de que quieres reiniciar todo el examen? Se borrarán tus respuestas.')) {
-                userAnswers = new Array(questions.length).fill(null);
+                userSelections = new Array(questions.length).fill(null).map(() => []);
+                submittedAnswers = new Array(questions.length).fill(null);
                 currentSingleIndex = 0;
                 currentFilter = 'all';
                 closeResultModal();
@@ -1043,6 +1341,7 @@
                 }
             }
         }
+
     </script>
 </body>
 </html>
