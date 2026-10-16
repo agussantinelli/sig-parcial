@@ -49,8 +49,12 @@
                     <span id="stat-answered" class="text-blue-600 font-bold">0/35</span>
                 </div>
                 <div class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 rounded-lg text-emerald-700">
-                    <span>Correctas:</span>
+                    <span>Perfectas:</span>
                     <span id="stat-correct" class="font-bold">0</span>
+                </div>
+                <div class="flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 rounded-lg text-amber-700">
+                    <span>Parciales:</span>
+                    <span id="stat-partial" class="font-bold">0</span>
                 </div>
                 <div class="flex items-center gap-1.5 px-3 py-1.5 bg-rose-50 rounded-lg text-rose-700">
                     <span>Incorrectas:</span>
@@ -184,14 +188,18 @@
                         </div>
 
                         <!-- Referencia de colores -->
-                        <div class="pt-3 border-t border-slate-100 grid grid-cols-3 gap-1 text-[11px] text-slate-500 font-medium">
+                        <div class="pt-3 border-t border-slate-100 grid grid-cols-2 gap-2 text-[11px] text-slate-500 font-medium">
                             <div class="flex items-center gap-1.5">
                                 <span class="w-2.5 h-2.5 rounded-full bg-slate-200 border border-slate-300"></span>
                                 <span>Pendiente</span>
                             </div>
                             <div class="flex items-center gap-1.5">
                                 <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                                <span>Correcta</span>
+                                <span>Perfecta (+1)</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                                <span>Parcial</span>
                             </div>
                             <div class="flex items-center gap-1.5">
                                 <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
@@ -898,6 +906,7 @@
 
             document.getElementById('stat-answered').innerText = `${stats.answeredCount}/${questions.length}`;
             document.getElementById('stat-correct').innerText = stats.perfectCount;
+            const pElem = document.getElementById('stat-partial'); if(pElem) pElem.innerText = stats.partialCount;
             document.getElementById('stat-incorrect').innerText = stats.wrongCount;
 
             document.getElementById('count-pending').innerText = stats.pendingCount;
@@ -983,19 +992,14 @@
             const q = questions[qIdx];
             const current = userSelections[qIdx] || [];
 
-            if (q.type === 'single') {
-                // Selección única: reemplaza la selección
-                userSelections[qIdx] = [optIdx];
+            // Permite marcar una o más opciones libremente en cualquier pregunta
+            const pos = current.indexOf(optIdx);
+            if (pos > -1) {
+                current.splice(pos, 1);
             } else {
-                // Selección múltiple: añade o quita la opción
-                const pos = current.indexOf(optIdx);
-                if (pos > -1) {
-                    current.splice(pos, 1);
-                } else {
-                    current.push(optIdx);
-                }
-                userSelections[qIdx] = current;
+                current.push(optIdx);
             }
+            userSelections[qIdx] = current;
 
             renderQuestionCardElement(qIdx);
             renderQuestionGrid();
@@ -1080,11 +1084,6 @@
             const submission = submittedAnswers[idx];
             const selected = userSelections[idx] || [];
             const letters = ['A', 'B', 'C', 'D'];
-
-            // Badges
-            const typeBadge = q.type === 'multi' 
-                ? '<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200">Múltiples correctas (A, B, C y/o D)</span>'
-                : '<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-600 border border-slate-200">Opción Única</span>';
 
             let statusBadge = '';
             if (!isSubmitted) {
@@ -1200,10 +1199,7 @@
             return `
                 <div id="question-card-${idx}" class="bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow transition-all p-5 sm:p-7 relative">
                     <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-                        <div class="flex items-center gap-2">
-                            <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Pregunta ${idx + 1} de ${questions.length}</span>
-                            ${typeBadge}
-                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Pregunta ${idx + 1} de ${questions.length}</span>
                         ${statusBadge}
                     </div>
 
