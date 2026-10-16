@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Examen - SIG (30 Preguntas)</title>
+    <title>Simulador de Examen - SIG (35 Preguntas)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +38,7 @@
                 </div>
                 <div>
                     <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">Simulador de Examen</h1>
-                    <p class="text-xs text-slate-500">30 Preguntas · Modo Simultáneo y Libre</p>
+                    <p class="text-xs text-slate-500">35 Preguntas · Modo Simultáneo y Libre</p>
                 </div>
             </div>
 
@@ -46,7 +46,7 @@
             <div id="header-stats" class="hidden items-center gap-2 sm:gap-4 text-xs sm:text-sm font-semibold">
                 <div class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 rounded-lg text-slate-700">
                     <span>Respondidas:</span>
-                    <span id="stat-answered" class="text-blue-600 font-bold">0/30</span>
+                    <span id="stat-answered" class="text-blue-600 font-bold">0/35</span>
                 </div>
                 <div class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 rounded-lg text-emerald-700">
                     <span>Correctas:</span>
@@ -93,7 +93,7 @@
             
             <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">Simulador Parcial SIG</h2>
             <p class="text-slate-600 text-sm sm:text-base mb-6 leading-relaxed">
-                Podés responder las <strong>30 preguntas en simultáneo</strong> o saltar a cualquiera en el orden que prefieras. Cada respuesta te mostrará retroalimentación y explicación inmediata.
+                Podés responder las <strong>35 preguntas en simultáneo</strong> o saltar a cualquiera en el orden que prefieras. Cada respuesta te mostrará retroalimentación y explicación inmediata.
             </p>
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left mb-8">
@@ -106,7 +106,7 @@
                     <div class="text-xs text-slate-500">Verificá tus aciertos y errores con explicaciones.</div>
                 </div>
                 <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
-                    <div class="text-blue-600 font-bold text-sm mb-1">🧭 Matriz 1 a 30</div>
+                    <div class="text-blue-600 font-bold text-sm mb-1">🧭 Matriz 1 a 35</div>
                     <div class="text-xs text-slate-500">Mapa visual para saltar con un solo click.</div>
                 </div>
             </div>
@@ -133,10 +133,10 @@
                         <div class="flex items-center gap-1.5 text-xs font-semibold overflow-x-auto pb-1 sm:pb-0">
                             <span class="text-slate-500 mr-1">Filtrar:</span>
                             <button id="filter-all" onclick="setFilter('all')" class="px-2.5 py-1.5 rounded-lg bg-blue-100 text-blue-700 font-bold transition-all">
-                                Todas (30)
+                                Todas (35)
                             </button>
                             <button id="filter-pending" onclick="setFilter('pending')" class="px-2.5 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">
-                                Pendientes (<span id="count-pending">30</span>)
+                                Pendientes (<span id="count-pending">35</span>)
                             </button>
                             <button id="filter-correct" onclick="setFilter('correct')" class="px-2.5 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-all">
                                 Correctas (<span id="count-correct">0</span>)
@@ -164,7 +164,7 @@
 
                 </div>
 
-                <!-- Columna Lateral Sticky: Matriz de 30 Preguntas -->
+                <!-- Columna Lateral Sticky: Matriz de 35 Preguntas -->
                 <div class="lg:col-span-4 sticky top-20 space-y-4">
                     <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-5">
                         
@@ -174,13 +174,13 @@
                                 <span>Mapa de Preguntas</span>
                             </h3>
                             <span id="score-badge" class="text-xs font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-                                0 / 30 pts
+                                0 / 35 pts
                             </span>
                         </div>
 
-                        <!-- Grid 1 a 30 -->
-                        <div id="question-grid" class="grid grid-cols-6 gap-2 mb-4">
-                            <!-- 30 botones generados por JS -->
+                        <!-- Grid 1 a 35 -->
+                        <div id="question-grid" class="grid grid-cols-5 sm:grid-cols-7 lg:grid-cols-5 gap-1.5 mb-4 max-h-[380px] overflow-y-auto custom-scroll pr-1">
+                            <!-- 35 botones generados por JS -->
                         </div>
 
                         <!-- Referencia de colores -->
@@ -223,7 +223,7 @@
                 <p class="text-sm text-slate-500 mb-6">Resumen general de tu desempeño</p>
 
                 <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-5 mb-6">
-                    <div class="text-4xl font-black text-blue-600 mb-1" id="modal-final-score">0 / 30</div>
+                    <div class="text-4xl font-black text-blue-600 mb-1" id="modal-final-score">0 / 35</div>
                     <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4" id="modal-percentage">0% de aciertos</div>
                     
                     <div class="grid grid-cols-3 gap-2 pt-3 border-t border-slate-200 text-xs">
@@ -259,337 +259,392 @@
 
     <script>
         const questions = [
-            {
-                q: "¿Cuál es la diferencia principal que existe entre un SIG y otros paquetes de software gráfico (como CAD)?",
-                options: [
-                    "El SIG solo permite imprimir mapas en alta resolución.",
-                    "El SIG es esencialmente una base de datos espacial, vinculando cartografía con tablas atributivas.",
-                    "El software gráfico maneja coordenadas geográficas mientras el SIG no.",
-                    "El SIG solo almacena información en formato raster (imágenes)."
-                ],
-                ans: 1,
-                exp: "La esencia del SIG reside en que es una base de datos espacial que permite el análisis espacial y vincula geometría con información atributiva, no solo dibuja."
-            },
-            {
-                q: "Dentro de los modelos de representación de la Tierra, ¿cómo se define el Geoide?",
-                options: [
-                    "Como una figura geométrica tridimensional generada por la rotación de una elipse.",
-                    "Como una malla regular de píxeles que almacena la altura del terreno.",
-                    "Como una superficie irregular que coincide con la prolongación de los mares en calma bajo los continentes.",
-                    "Como el ángulo entre el Norte Geográfico y el Norte Magnético."
-                ],
-                ans: 2,
-                exp: "El geoide representa la forma física real de la Tierra, siendo una superficie equipotencial del campo de gravedad coincidente con los mares en calma."
-            },
-            {
-                q: "En el contexto de la representación cartográfica, ¿qué función cumple el Elipsoide de referencia?",
-                options: [
-                    "Representar con exactitud todas las montañas y valles del terreno.",
-                    "Almacenar los atributos descriptivos de las parcelas.",
-                    "Simplificar matemáticamente la forma de la Tierra para poder asignar coordenadas y realizar cálculos.",
-                    "Conectar sistemas informáticos a través de la red."
-                ],
-                ans: 2,
-                exp: "Debido a la irregularidad del geoide, se utiliza un elipsoide (cuerpo matemático regular) como modelo para facilitar los cálculos de posicionamiento."
-            },
-            {
-                q: "Un Datum se define como:",
-                options: [
-                    "Un sistema de referencia espacial que describe la forma y el tamaño de la Tierra, estableciendo un origen para las coordenadas.",
-                    "Un tipo de proyección cilíndrica utilizada en Argentina.",
-                    "El formato estándar de los archivos de imágenes satelitales.",
-                    "El ángulo que se forma entre la declinación magnética y los paralelos."
-                ],
-                ans: 0,
-                exp: "El Datum es el sistema de referencia que adopta un elipsoide y lo posiciona respecto al centro de la Tierra o a un punto local para asignar coordenadas."
-            },
-            {
-                q: "¿Qué características definen a las Coordenadas Geográficas?",
-                options: [
-                    "Utilizan un sistema de ejes ortogonales (X, Y) medidos en metros.",
-                    "Se miden a partir de 3 dimensiones métricas en un plano tangente.",
-                    "No pueden usarse con el Datum WGS 84.",
-                    "Utilizan dimensiones angulares (latitud y longitud) basadas en paralelos y meridianos."
-                ],
-                ans: 3,
-                exp: "Las coordenadas geográficas utilizan ángulos (grados, minutos, segundos) sobre un modelo tridimensional (esférico o elipsoidal)."
-            },
-            {
-                q: "Si hablamos de formato vectorial en un SIG, la realidad se representa mediante:",
-                options: [
-                    "Puntos, líneas y polígonos.",
-                    "Una cuadrícula regular de píxeles.",
-                    "Fotografías aéreas exclusivamente.",
-                    "Tablas de atributos sin geometría asociada."
-                ],
-                ans: 0,
-                exp: "El modelo vectorial utiliza entidades geométricas discretas (puntos, líneas y polígonos) definidos analíticamente por coordenadas."
-            },
-            {
-                q: "El formato Raster es ideal para:",
-                options: [
-                    "Representar elementos precisos como la ubicación de los semáforos.",
-                    "Trazar el recorrido exacto de una red de cañerías subterráneas.",
-                    "Almacenar datos que varían de forma continua en el territorio, como imágenes satelitales o modelos de elevación.",
-                    "Guardar exclusivamente tablas estadísticas sin coordenadas."
-                ],
-                ans: 2,
-                exp: "Al estar formado por una malla de celdas (píxeles), el ráster es perfecto para fenómenos continuos como la temperatura, altimetría o imágenes de teledetección."
-            },
-            {
-                q: "¿Cuál de las siguientes afirmaciones sobre las fuentes de datos en un SIG es correcta?",
-                options: [
-                    "Solo se pueden utilizar bases de datos estadísticas.",
-                    "La única fuente válida son las imágenes satelitales obtenidas por teledetección.",
-                    "Los mapas históricos en papel no pueden incorporarse a un SIG.",
-                    "Los datos pueden provenir de teledetección, relevamientos de campo, GPS, digitalización y cartografía tradicional."
-                ],
-                ans: 3,
-                exp: "Un SIG se nutre de múltiples fuentes, integrando datos de satélites, drones, GPS, relevamientos, digitalización y bases estadísticas."
-            },
-            {
-                q: "En el ámbito de los Sistemas de Información Geográfica, ¿qué es una IDE?",
-                options: [
-                    "Un Entorno de Desarrollo Integrado (como Visual Studio) para programar rutinas geográficas.",
-                    "Una Infraestructura de Datos Espaciales conformada por políticas, tecnologías, datos y estándares para facilitar el acceso a la geoinformación.",
-                    "Un Instrumento de Digitalización Espacial utilizado en teledetección.",
-                    "El formato estándar propuesto por el OGC para comprimir mapas."
-                ],
-                ans: 1,
-                exp: "Una Infraestructura de Datos Espaciales (IDE) no es un software de programación, sino un conjunto articulado que facilita la gestión y acceso a datos espaciales en red."
-            },
-            {
-                q: "¿Qué función principal cumple el servicio WMS (Web Map Service)?",
-                options: [
-                    "Permite descargar la capa vectorial completa con todos sus atributos en formato Shapefile.",
-                    "Devuelve información espacial renderizada exclusivamente como una imagen (ej: PNG o JPEG) para su visualización.",
-                    "Realiza análisis estadísticos espaciales complejos directamente en el servidor.",
-                    "Busca y localiza metadatos de diferentes instituciones."
-                ],
-                ans: 1,
-                exp: "El WMS actúa como un servidor de mapas que devuelve una representación visual (una 'foto' o imagen) de los datos, no los vectores crudos editables."
-            },
-            {
-                q: "A diferencia del WMS, ¿qué permite el WFS (Web Feature Service)?",
-                options: [
-                    "Visualizar mapas de calor en formato raster de manera exclusiva.",
-                    "Acceder a los datos vectoriales (features) subyacentes y consultar sus atributos, generalmente en formato GML.",
-                    "Consultar únicamente el catálogo de metadatos del geoportal.",
-                    "Aplicar estilos visuales (SLD) a una imagen de satélite."
-                ],
-                ans: 1,
-                exp: "El WFS entrega los datos vectoriales crudos reales (geometría y atributos) a través de la red, permitiendo consultas complejas e incluso edición."
-            },
-            {
-                q: "El Open Geospatial Consortium (OGC) tiene como objetivo fundamental:",
-                options: [
-                    "Vender licencias de software privativo para municipalidades.",
-                    "Garantizar la interoperabilidad de contenidos y servicios geográficos mediante el desarrollo de estándares.",
-                    "Almacenar físicamente todas las imágenes satelitales del mundo.",
-                    "Reemplazar al Instituto Geográfico Nacional en la generación de cartografía."
-                ],
-                ans: 1,
-                exp: "El OGC define especificaciones y estándares abiertos (como WMS, WFS, WCS) para asegurar que sistemas distintos puedan interoperar y comunicarse."
-            },
-            {
-                q: "¿Qué sucede inevitablemente cuando se proyecta la superficie curva del elipsoide terrestre sobre un plano bidimensional?",
-                options: [
-                    "Se genera un mapa libre de deformaciones si se usa Mercator.",
-                    "Se pierden automáticamente los datos de la tabla de atributos.",
-                    "Es inevitable que se produzcan distorsiones en áreas, formas o distancias.",
-                    "El sistema cambia el norte geográfico al sur."
-                ],
-                ans: 2,
-                exp: "Toda proyección cartográfica produce deformaciones, ya que es geométricamente imposible aplanar una superficie curva tridimensional sin alterarla."
-            },
-            {
-                q: "La proyección Gauss-Krüger, utilizada oficialmente en Argentina, se clasifica geométricamente como:",
-                options: [
-                    "Cónica equivalente.",
-                    "Cilíndrica transversa conforme.",
-                    "Acimutal polar.",
-                    "Plana equidistante."
-                ],
-                ans: 1,
-                exp: "Es un modelo matemático de proyección cilíndrica transversa, y es 'conforme' porque preserva las formas locales (ángulos)."
-            },
-            {
-                q: "¿Cómo mitiga el sistema Gauss-Krüger argentino las grandes distorsiones que se generarían al proyectar todo el país?",
-                options: [
-                    "Divide el territorio nacional en 7 fajas meridianas estrechas de 3° de ancho de longitud.",
-                    "Utiliza 60 husos de 6 grados de ancho, al igual que el sistema global UTM.",
-                    "Elimina la representación de la Patagonia.",
-                    "Proyecta todo el territorio sobre un cono tangente."
-                ],
-                ans: 0,
-                exp: "A diferencia de UTM, el IGN divide a la Argentina en 7 fajas (numeradas del 1 al 7) para minimizar las deformaciones cartográficas."
-            },
-            {
-                q: "En una escala numérica (ej: 1:50.000), ¿qué ocurre si el denominador es más grande (ej: 1:1.000.000)?",
-                options: [
-                    "El mapa muestra un área menor con muchísimo más nivel de detalle.",
-                    "La escala se considera 'mayor' y representa lotes urbanos.",
-                    "La reducción del terreno es mayor, por lo tanto, la escala es 'menor' y muestra menos detalle.",
-                    "El mapa deja de estar georreferenciado."
-                ],
-                ans: 2,
-                exp: "Cuanto mayor es el denominador, más veces se ha achicado la realidad para entrar en el papel. Por ende, muestra áreas más extensas pero con menor detalle (escala menor)."
-            },
-            {
-                q: "Los Metadatos en el contexto de un SIG se definen como:",
-                options: [
-                    "El conjunto de píxeles que conforman un modelo digital de elevaciones.",
-                    "Las columnas de la tabla de atributos que contienen datos numéricos.",
-                    "Los 'datos sobre los datos' que describen el origen, calidad, fecha y sistema de coordenadas de la capa.",
-                    "Los programas utilizados para convertir de vectorial a raster."
-                ],
-                ans: 2,
-                exp: "Los metadatos documentan las características técnicas, legales y de calidad de la información geográfica, siendo vitales para su búsqueda e interpretación."
-            },
-            {
-                q: "¿Qué diferencia práctica existe entre un Visualizador web y un Geoportal?",
-                options: [
-                    "El visualizador permite descargar archivos (Shapefile, KML), mientras que el Geoportal no.",
-                    "El visualizador solo admite formato raster y el Geoportal solo formato vectorial.",
-                    "Son términos idénticos que funcionan con los mismos protocolos.",
-                    "El visualizador solo permite explorar gráficamente, mientras que un Geoportal avanzado habilita la descarga de datos crudos y acceso a servicios."
-                ],
-                ans: 3,
-                exp: "Un Geoportal es más completo: integra catálogo, metadatos y capacidades de descarga directa o consumo vía geoservicios, superando la mera visualización."
-            },
-            {
-                q: "¿Hacia dónde apuntan las agujas de las brújulas en cualquier lugar de la Tierra?",
-                options: [
-                    "Hacia el Norte Geográfico, determinado por el eje de rotación de la Tierra.",
-                    "Hacia el Norte de Cuadrícula definido por el meridiano central de la proyección.",
-                    "Hacia el Norte Magnético, el cual cambia de posición continuamente.",
-                    "Hacia el Ecuador."
-                ],
-                ans: 2,
-                exp: "Las brújulas señalan el Norte Magnético, generado por el núcleo de la Tierra. Este no coincide con el Norte Geográfico y está en constante desplazamiento."
-            },
-            {
-                q: "¿Qué es la 'Declinación Magnética'?",
-                options: [
-                    "La pérdida de señal GPS cuando hay nubes densas.",
-                    "El ángulo formado entre la recta del Norte Geográfico y la recta del Norte Magnético.",
-                    "La distorsión que sufren las formas en los polos usando Mercator.",
-                    "El ángulo de convergencia entre meridianos paralelos."
-                ],
-                ans: 1,
-                exp: "Se denomina declinación magnética al ángulo que separa el norte verdadero o geográfico del norte magnético indicado por la brújula en un punto dado."
-            },
-            {
-                q: "Un archivo con extensión .SHP (Shapefile) desarrollado por ESRI se compone obligatoriamente de:",
-                options: [
-                    "Un único archivo que guarda la geometría y los atributos a la vez.",
-                    "Varios archivos vinculados (como .shp, .shx, .dbf) que deben guardarse en la misma carpeta.",
-                    "Una imagen de mapa de bits (como un JPEG) más un archivo de texto.",
-                    "Celdas rectangulares que contienen valores de altitud."
-                ],
-                ans: 1,
-                exp: "El estándar Shapefile no es un solo archivo. Requiere como mínimo el .shp (geometría), .shx (índice espacial) y .dbf (tabla de atributos)."
-            },
-            {
-                q: "Si en un sistema Gauss-Krüger observamos que a las ordenadas (Eje Y) se les suma un Falso Este de 500.000 metros, ¿cuál es la finalidad?",
-                options: [
-                    "Ubicar el mapa exactamente en el Ecuador.",
-                    "Aumentar el nivel de detalle (escala) de la cartografía.",
-                    "Impedir que al trabajar al oeste del meridiano central se produzcan coordenadas cartesianas con valores negativos.",
-                    "Corregir la desviación del norte magnético."
-                ],
-                ans: 2,
-                exp: "Para facilitar los cálculos matemáticos, se desplaza el origen 500.000 metros al Oeste, asegurando que todos los valores X dentro de la faja sean positivos."
-            },
-            {
-                q: "¿Qué estándar o sistema global (Datum) es utilizado por defecto por los dispositivos de Posicionamiento Global (GPS)?",
-                options: [
-                    "POSGAR 2007",
-                    "Campo Inchauspe 1969",
-                    "WGS 84 (World Geodetic System 1984)",
-                    "Gauss-Krüger"
-                ],
-                ans: 2,
-                exp: "El WGS 84 es el Datum geocéntrico estándar global sobre el cual operan los satélites GPS."
-            },
-            {
-                q: "Dentro de las proyecciones cartográficas, ¿cuál es la característica de las proyecciones Acimutales (o Planas)?",
-                options: [
-                    "Utilizan un cilindro como figura auxiliar envolviendo la Tierra por el Ecuador.",
-                    "Se construyen mediante un plano tangente que toca la esfera en un único punto.",
-                    "Dividen la Tierra en 60 husos transversales.",
-                    "Los meridianos son líneas rectas concurrentes y los paralelos círculos concéntricos."
-                ],
-                ans: 1,
-                exp: "Las proyecciones acimutales proyectan la Tierra sobre un plano tangente a un punto, preservando fielmente los acimuts (direcciones) desde dicho centro."
-            },
-            {
-                q: "¿Qué permite hacer la 'Calculadora de Campos' en el software QGIS?",
-                options: [
-                    "Descargar imágenes satelitales de alta resolución de Google Earth.",
-                    "Generar nuevas columnas en la tabla de atributos ejecutando funciones espaciales o matemáticas (como $length o $area).",
-                    "Convertir el Norte Magnético a Norte Geográfico.",
-                    "Publicar automáticamente mapas en un servidor WMS."
-                ],
-                ans: 1,
-                exp: "La calculadora de campos es la herramienta analítica para manipular la tabla de atributos, calculando áreas, longitudes o concatenando cadenas de texto."
-            },
-            {
-                q: "Si un archivo CSV solo contiene tablas de datos poblacionales sin ninguna columna referida a coordenadas (como Latitud/Longitud o WKT), en QGIS:",
-                options: [
-                    "Se generará automáticamente una capa vectorial de polígonos.",
-                    "Dará error y cerrará el programa inmediatamente.",
-                    "Se incorporará exclusivamente como una tabla de atributos alfanumérica sin renderizar geometría en el mapa.",
-                    "El programa adivinará la ubicación basándose en los nombres de las ciudades."
-                ],
-                ans: 2,
-                exp: "Sin coordenadas explícitas, el SIG no puede geolocalizar los registros, por lo que el CSV entra simplemente como una tabla relacional no espacial."
-            },
-            {
-                q: "¿Qué rol juega la Información Geográfica Voluntaria (ej. OpenStreetMap) en los SIG modernos?",
-                options: [
-                    "Es un archivo histórico obsoleto que ya no se utiliza.",
-                    "Representa un pilar importante alimentado por las aportaciones libres de los usuarios en línea para nutrir políticas de Datos Abiertos.",
-                    "Es la única fuente autorizada por el IGN para digitalizar rutas.",
-                    "Es un formato de archivo cerrado y privativo similar al KML."
-                ],
-                ans: 1,
-                exp: "La IGV (VGI en inglés) ha cobrado vital importancia gracias al aporte colaborativo y funciona como una enorme base de Datos Abiertos."
-            },
-            {
-                q: "La conocida Proyección de Mercator se clasifica como:",
-                options: [
-                    "Acimutal Polar.",
-                    "Cónica Conforme.",
-                    "Cilíndrica.",
-                    "Ninguna de las anteriores, es un Datum."
-                ],
-                ans: 2,
-                exp: "Diseñada por Gerardus Mercator, es la proyección cilíndrica más famosa, manteniendo los ángulos rectos entre paralelos y meridianos (conforme) pero distorsionando fuertemente las áreas hacia los polos."
-            },
-            {
-                q: "¿Qué significa que los sistemas SIG modernos promuevan la 'Interoperabilidad'?",
-                options: [
-                    "Que todos los usuarios deben usar obligatoriamente el mismo software comercial.",
-                    "Que solo se pueden usar bases de datos físicas (locales) sin conexión a internet.",
-                    "Que sistemas informáticos heterogéneos pueden comunicarse, ejecutar y compartir datos sin que el usuario conozca las características internas del otro sistema.",
-                    "Que los vectores se transforman automáticamente en imágenes raster al acercar el zoom."
-                ],
-                ans: 2,
-                exp: "La interoperabilidad, facilitada por estándares del OGC, permite que QGIS, ArcGIS y servicios web 'hablen el mismo idioma' de forma transparente."
-            },
-            {
-                q: "Respecto a los formatos espaciales, el GeoPackage (.gpkg) se destaca porque:",
-                options: [
-                    "Solo puede almacenar un archivo KML a la vez.",
-                    "Está quedando obsoleto y fue reemplazado por el Shapefile.",
-                    "Es un formato moderno basado en bases de datos que permite guardar múltiples capas vectoriales y raster en un único archivo.",
-                    "No soporta proyecciones cartográficas ni tablas de atributos."
-                ],
-                ans: 2,
-                exp: "GeoPackage es el formato abierto moderno por excelencia, actuando como un contenedor SQLite capaz de albergar toda la estructura de un proyecto (vectores y raster) en un solo fichero."
-            }
-        ];
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Sobre la definición y características de los SIG:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Los SIG combinan información cartográfica digital con información atributiva organizada mediante tablas.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>La diferencia radical entre un SIG y otros paquetes gráficos reside en que el SIG es esencialmente una base de datos espaciales.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>El SIG solo almacena información cartográfica digital y permite dibujarla, pero no cuenta con análisis espacial.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Permiten a los usuarios crear consultas interactivas, generar mapas y presentar los resultados de las operaciones.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, B y D son correctas.",
+            "Opciones A, C y D son correctas.",
+            "Solo las opciones B y D son correctas.",
+            "Todas las opciones (A, B, C y D) son correctas."
+        ],
+        "ans": 0,
+        "exp": "La opción C es una trampa típica; los SIG no solo dibujan, sino que vinculan la geometría con datos alfanuméricos permitiendo análisis espacial complejo."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Componentes fundamentales para que un SIG funcione:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Bases de datos espaciales, donde la realidad territorial se codifica mediante geometrías.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Bases de datos temáticas, que contienen la información descriptiva de los elementos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Administradores del sistema, encargados de resolver los requerimientos de usuarios y mantener el sistema.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Exclusivamente software libre, ya que los SIG no pueden operar en entornos comerciales.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Solo las opciones A y B son correctas.",
+            "Opciones A, B y C son correctas.",
+            "Opciones B, C y D son correctas.",
+            "Todas las opciones son correctas."
+        ],
+        "ans": 1,
+        "exp": "La opción D es falsa porque el mercado de software SIG está dominado tanto por distribuidores comerciales (ej. ESRI) como por desarrolladores de software libre (QGIS)."
+    },
+    {
+        "q": "En el contexto de la representación cartográfica, ¿qué función cumple el Elipsoide de referencia?",
+        "options": [
+            "Representar con exactitud todas las montañas y valles del terreno.",
+            "Almacenar los atributos descriptivos de las parcelas.",
+            "Simplificar matemáticamente la forma de la Tierra para poder asignar coordenadas y realizar cálculos.",
+            "Conectar sistemas informáticos a través de la red."
+        ],
+        "ans": 2,
+        "exp": "Debido a la irregularidad del geoide, se utiliza un elipsoide (cuerpo matemático regular) como modelo para facilitar los cálculos de posicionamiento."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Fuentes de datos en los Sistemas de Información Geográfica:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>La única fuente válida y confiable de datos en un SIG son las imágenes satelitales obtenidas por teledetección.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Los datos pueden ser generados mediante el relevamiento de campo usando receptores GPS/GNSS.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>La Información Geográfica Voluntaria (ej. OpenStreetMap) es una fuente válida aportada por usuarios.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Las bases de datos estadísticas y la cartografía tradicional digitalizada también alimentan el SIG.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, B y C son correctas.",
+            "Opciones B, C y D son correctas.",
+            "Solo las opciones B y D son correctas.",
+            "Todas las opciones son correctas."
+        ],
+        "ans": 1,
+        "exp": "La opción A es la clásica trampa del parcial; los datos de un SIG provienen de múltiples fuentes, no solo de satélites."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Sobre el formato Vectorial de información geográfica:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Representa la realidad mediante tres expresiones geométricas básicas: puntos, líneas y polígonos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>La realidad deberá ser representada por una malla regular formada por píxeles o celdas.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Cada entidad vectorial (como un polígono) suele tener atributos asociados almacenados en una tabla.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>El formato Shapefile (.shp) y el GeoPackage (.gpkg) son extensiones propias de este modelo.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, B y D son correctas.",
+            "Solo las opciones A y C son correctas.",
+            "Opciones A, C y D son correctas.",
+            "Todas las opciones son correctas."
+        ],
+        "ans": 2,
+        "exp": "La opción B describe exactamente al formato Ráster, no al Vectorial."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Sobre el formato Ráster:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Es el formato ideal para almacenar datos que varían de forma continua en el territorio, como la altimetría o la temperatura.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Su estructura básica es una rejilla regular dividida en filas y columnas donde cada celda registra un valor numérico.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>En este formato no se emplean puntos, líneas y áreas para definir la geometría.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>El formato GeoTIFF es el estándar más utilizado y permite incrustar información de georreferenciación.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, B y D son correctas.",
+            "Opciones A y B son correctas, pero C es falsa.",
+            "Opciones B, C y D son correctas.",
+            "Todas las opciones (A, B, C y D) son correctas."
+        ],
+        "ans": 3,
+        "exp": "Todas las afirmaciones corresponden a las propiedades fundamentales, usos y formatos del modelo matricial/ráster vistos en la teoría."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Modelos de la Tierra: Geoide y Elipsoide:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>El geoide es la forma física real e irregular de la Tierra, coincidente con los mares en calma prolongados bajo los continentes.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>El geoide y el elipsoide son figuras idénticas que coinciden perfectamente en todos los puntos del planeta.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>El elipsoide es un modelo matemático tridimensional y regular utilizado para simplificar la forma terrestre y realizar cálculos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>La Geodesia es la ciencia que define y estudia estos modelos de la superficie terrestre.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, C y D son correctas.",
+            "Opciones A, B y C son correctas.",
+            "Solo las opciones A y C son correctas.",
+            "Todas las opciones son correctas."
+        ],
+        "ans": 0,
+        "exp": "La opción B es falsa; el geoide es irregular y el elipsoide es una simplificación matemática, por lo que nunca coinciden perfectamente en todas partes."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Sobre Datum y Sistemas de Referencia:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>El Datum es un sistema de referencia espacial que describe la forma y tamaño de la Tierra estableciendo el origen de coordenadas.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>El Datum global más destacado es el WGS 84, cuyo centro coincide con el centro de masas terrestre y es usado por el GPS.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>El objetivo de un Datum local es hacer que el elipsoide se ajuste de la mejor manera al geoide en una región geográfica específica.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>El Datum es exactamente lo mismo que una proyección cartográfica.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, B y D son correctas.",
+            "Opciones A, B y C son correctas.",
+            "Solo las opciones B y C son correctas.",
+            "Todas las opciones son correctas."
+        ],
+        "ans": 1,
+        "exp": "La opción D es falsa. El Datum define la referencia tridimensional de la Tierra, mientras que la proyección es el método para pasar de esa figura curva a un plano bidimensional."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Sistemas de localización y Coordenadas:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Las coordenadas geográficas utilizan magnitudes angulares: latitud y longitud.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>La latitud indica qué tan al Norte o al Sur del Ecuador se encuentra un punto, variando de 0° a 90°.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Las coordenadas geográficas son ideales para realizar cálculos planimétricos exactos de áreas en metros.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Las coordenadas cartesianas o proyectadas se expresan en unidades lineales (generalmente metros) usando ejes ortogonales X e Y.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, B y C son correctas.",
+            "Solo las opciones A y D son correctas.",
+            "Opciones A, B y D son correctas.",
+            "Todas las opciones son correctas."
+        ],
+        "ans": 2,
+        "exp": "La opción C es falsa. Las coordenadas angulares (geográficas) sufren convergencia en los polos, por lo que no son prácticas ni precisas para medir distancias métricas o áreas cartesianas."
+    },
+    {
+        "q": "¿Cómo mitiga el sistema Gauss-Krüger argentino las grandes distorsiones que se generarían al proyectar todo el país?",
+        "options": [
+            "Divide el territorio nacional en 7 fajas meridianas estrechas de 3° de ancho de longitud.",
+            "Utiliza 60 husos de 6 grados de ancho, al igual que el sistema global UTM.",
+            "Elimina la representación de la Patagonia.",
+            "Proyecta todo el territorio sobre un cono tangente."
+        ],
+        "ans": 0,
+        "exp": "A diferencia de UTM, el IGN divide a la Argentina en 7 fajas (numeradas del 1 al 7) para minimizar las deformaciones cartográficas."
+    },
+    {
+        "q": "En una escala numérica (ej: 1:50.000), ¿qué ocurre si el denominador es más grande (ej: 1:1.000.000)?",
+        "options": [
+            "El mapa muestra un área menor con muchísimo más nivel de detalle.",
+            "La escala se considera 'mayor' y representa lotes urbanos.",
+            "La reducción del terreno es mayor, por lo tanto, la escala es 'menor' y muestra menos detalle.",
+            "El mapa deja de estar georreferenciado."
+        ],
+        "ans": 2,
+        "exp": "Cuanto mayor es el denominador, más veces se ha achicado la realidad para entrar en el papel. Por ende, muestra áreas más extensas pero con menor detalle (escala menor)."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Tipos y distorsiones de Proyecciones Cartográficas:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Toda proyección cartográfica genera algún tipo de distorsión porque es imposible pasar una superficie esférica a un plano de forma perfecta.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Las proyecciones pueden clasificarse geométricamente en cilíndricas, cónicas y acimutales.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>La famosa proyección de Mercator es un claro ejemplo de proyección cónica.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Las proyecciones acimutales se realizan sobre un plano tangente a la esfera terrestre.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, B y D son correctas.",
+            "Opciones A, B y C son correctas.",
+            "Solo las opciones B y D son correctas.",
+            "Todas las opciones son correctas."
+        ],
+        "ans": 0,
+        "exp": "La opción C es falsa. Mercator es históricamente una proyección de tipo cilíndrica."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Proyección Gauss-Krüger:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Es un modelo de proyección cilíndrica transversa conforme utilizado como sistema oficial en Argentina por el IGN.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Divide el territorio argentino en 7 fajas meridianas de 3 grados de ancho de longitud.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Para evitar trabajar con coordenadas cartesianas negativas, al eje Y (meridiano central) se le suma un Falso Este de 500.000 metros.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Divide todo el globo terrestre en 60 husos de 6 grados, al igual que el sistema global UTM.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, B y D son correctas.",
+            "Opciones B, C y D son correctas.",
+            "Opciones A, B y C son correctas.",
+            "Todas las opciones son correctas."
+        ],
+        "ans": 2,
+        "exp": "La opción D describe al sistema global UTM, no a la variante argentina Gauss-Krüger que usa fajas de 3 grados."
+    },
+    {
+        "q": "¿Hacia dónde apuntan las agujas de las brújulas en cualquier lugar de la Tierra?",
+        "options": [
+            "Hacia el Norte Geográfico, determinado por el eje de rotación de la Tierra.",
+            "Hacia el Norte de Cuadrícula definido por el meridiano central de la proyección.",
+            "Hacia el Norte Magnético, el cual cambia de posición continuamente.",
+            "Hacia el Ecuador."
+        ],
+        "ans": 2,
+        "exp": "Las brújulas señalan el Norte Magnético, generado por el núcleo de la Tierra. Este no coincide con el Norte Geográfico y está en constante desplazamiento."
+    },
+    {
+        "q": "¿Qué es la 'Declinación Magnética'?",
+        "options": [
+            "La pérdida de señal GPS cuando hay nubes densas.",
+            "El ángulo formado entre la recta del Norte Geográfico y la recta del Norte Magnético.",
+            "La distorsión que sufren las formas en los polos usando Mercator.",
+            "El ángulo de convergencia entre meridianos paralelos."
+        ],
+        "ans": 1,
+        "exp": "Se denomina declinación magnética al ángulo que separa el norte verdadero o geográfico del norte magnético indicado por la brújula en un punto dado."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Infraestructura de Datos Espaciales (IDE):</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Es un conjunto articulado de políticas, acuerdos, estándares, recursos humanos y tecnologías.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Es un Entorno de Desarrollo Integrado, o sea un software que facilita la programación y prueba de aplicaciones informáticas.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Su objetivo es facilitar el acceso, la gestión y el intercambio de la información espacial evitando la duplicación de esfuerzos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Sus principios incluyen la cooperación institucional, la interoperabilidad y la normalización.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, B y C son correctas.",
+            "Opciones A, C y D son correctas.",
+            "Solo las opciones A y D son correctas.",
+            "Todas las opciones son correctas."
+        ],
+        "ans": 1,
+        "exp": "La opción B es la clásica trampa que cruza las siglas de la informática (IDE de programación) con la geomática; en SIG, es una infraestructura territorial."
+    },
+    {
+        "q": "Un archivo con extensión .SHP (Shapefile) desarrollado por ESRI se compone obligatoriamente de:",
+        "options": [
+            "Un único archivo que guarda la geometría y los atributos a la vez.",
+            "Varios archivos vinculados (como .shp, .shx, .dbf) que deben guardarse en la misma carpeta.",
+            "Una imagen de mapa de bits (como un JPEG) más un archivo de texto.",
+            "Celdas rectangulares que contienen valores de altitud."
+        ],
+        "ans": 1,
+        "exp": "El estándar Shapefile no es un solo archivo. Requiere como mínimo el .shp (geometría), .shx (índice espacial) y .dbf (tabla de atributos)."
+    },
+    {
+        "q": "Si en un sistema Gauss-Krüger observamos que a las ordenadas (Eje Y) se les suma un Falso Este de 500.000 metros, ¿cuál es la finalidad?",
+        "options": [
+            "Ubicar el mapa exactamente en el Ecuador.",
+            "Aumentar el nivel de detalle (escala) de la cartografía.",
+            "Impedir que al trabajar al oeste del meridiano central se produzcan coordenadas cartesianas con valores negativos.",
+            "Corregir la desviación del norte magnético."
+        ],
+        "ans": 2,
+        "exp": "Para facilitar los cálculos matemáticos, se desplaza el origen 500.000 metros al Oeste, asegurando que todos los valores X dentro de la faja sean positivos."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Los tres Nortes en cartografía:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>El Norte Magnético es aquel hacia el cual apuntan las agujas de las brújulas y cambia su posición continuamente.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>El Norte Geográfico es fijo y está determinado por el eje de rotación de la Tierra.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>La convergencia de meridianos es el ángulo formado entre el Norte Geográfico y el Norte Magnético.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>El Norte de Cuadrícula es la dirección paralela al meridiano central del sistema de proyección utilizado.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, B y C son correctas.",
+            "Opciones B, C y D son correctas.",
+            "Opciones A, B y D son correctas.",
+            "Todas las opciones son correctas."
+        ],
+        "ans": 2,
+        "exp": "La opción C es falsa. El ángulo entre el Norte Geográfico y el Magnético se llama Declinación Magnética. La Convergencia de Meridianos involucra al Norte de Cuadrícula."
+    },
+    {
+        "q": "¿Qué estándar o sistema global (Datum) es utilizado por defecto por los dispositivos de Posicionamiento Global (GPS)?",
+        "options": [
+            "POSGAR 2007",
+            "Campo Inchauspe 1969",
+            "WGS 84 (World Geodetic System 1984)",
+            "Gauss-Krüger"
+        ],
+        "ans": 2,
+        "exp": "El WGS 84 es el Datum geocéntrico estándar global sobre el cual operan los satélites GPS."
+    },
+    {
+        "q": "Dentro de las proyecciones cartográficas, ¿cuál es la característica de las proyecciones Acimutales (o Planas)?",
+        "options": [
+            "Utilizan un cilindro como figura auxiliar envolviendo la Tierra por el Ecuador.",
+            "Se construyen mediante un plano tangente que toca la esfera en un único punto.",
+            "Dividen la Tierra en 60 husos transversales.",
+            "Los meridianos son líneas rectas concurrentes y los paralelos círculos concéntricos."
+        ],
+        "ans": 1,
+        "exp": "Las proyecciones acimutales proyectan la Tierra sobre un plano tangente a un punto, preservando fielmente los acimuts (direcciones) desde dicho centro."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Metadatos:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Se definen analíticamente como los 'datos sobre los datos', aportando contexto, origen y calidad a la capa geográfica.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Resultan indispensables para que un analista evalúe la confiabilidad técnica antes de utilizarlos en proyectos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Su función principal es almacenar las geometrías de los polígonos que no entran en un shapefile.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Deben documentar características como el organismo responsable, fecha, sistema de coordenadas y escala.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, B y D son correctas.",
+            "Opciones A, B y C son correctas.",
+            "Solo las opciones A y B son correctas.",
+            "Todas las opciones son correctas."
+        ],
+        "ans": 0,
+        "exp": "La opción C es falsa. Los metadatos no guardan geometrías, sino descripciones documentales y parámetros de calidad."
+    },
+    {
+        "q": "¿Qué permite hacer la 'Calculadora de Campos' en el software QGIS?",
+        "options": [
+            "Descargar imágenes satelitales de alta resolución de Google Earth.",
+            "Generar nuevas columnas en la tabla de atributos ejecutando funciones espaciales o matemáticas (como $length o $area).",
+            "Convertir el Norte Magnético a Norte Geográfico.",
+            "Publicar automáticamente mapas en un servidor WMS."
+        ],
+        "ans": 1,
+        "exp": "La calculadora de campos es la herramienta analítica para manipular la tabla de atributos, calculando áreas, longitudes o concatenando cadenas de texto."
+    },
+    {
+        "q": "Si un archivo CSV solo contiene tablas de datos poblacionales sin ninguna columna referida a coordenadas (como Latitud/Longitud o WKT), en QGIS:",
+        "options": [
+            "Se generará automáticamente una capa vectorial de polígonos.",
+            "Dará error y cerrará el programa inmediatamente.",
+            "Se incorporará exclusivamente como una tabla de atributos alfanumérica sin renderizar geometría en el mapa.",
+            "El programa adivinará la ubicación basándose en los nombres de las ciudades."
+        ],
+        "ans": 2,
+        "exp": "Sin coordenadas explícitas, el SIG no puede geolocalizar los registros, por lo que el CSV entra simplemente como una tabla relacional no espacial."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Estándares OGC e Interoperabilidad:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>La interoperabilidad permite que sistemas informáticos heterogéneos se comuniquen e intercambien procesos sin trabas.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>El OGC (Open Geospatial Consortium) es la entidad que elabora los estándares técnicos para garantizar dicha comunicación.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>El OGC define los vocabularios y protocolos (como WMS o WFS) para que un cliente y servidor hablen un lenguaje común.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>La interoperabilidad obliga a todos los organismos públicos a comprar exactamente la misma marca comercial de software SIG.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, B y D son correctas.",
+            "Opciones A, B y C son correctas.",
+            "Solo las opciones B y C son correctas.",
+            "Todas las opciones son correctas."
+        ],
+        "ans": 1,
+        "exp": "La opción D es lo contrario al concepto: la interoperabilidad busca precisamente que diferentes plataformas y marcas puedan entenderse sin requerir homogeneidad comercial."
+    },
+    {
+        "q": "¿Qué rol juega la Información Geográfica Voluntaria (ej. OpenStreetMap) en los SIG modernos?",
+        "options": [
+            "Es un archivo histórico obsoleto que ya no se utiliza.",
+            "Representa un pilar importante alimentado por las aportaciones libres de los usuarios en línea para nutrir políticas de Datos Abiertos.",
+            "Es la única fuente autorizada por el IGN para digitalizar rutas.",
+            "Es un formato de archivo cerrado y privativo similar al KML."
+        ],
+        "ans": 1,
+        "exp": "La IGV (VGI en inglés) ha cobrado vital importancia gracias al aporte colaborativo y funciona como una enorme base de Datos Abiertos."
+    },
+    {
+        "q": "La conocida Proyección de Mercator se clasifica como:",
+        "options": [
+            "Acimutal Polar.",
+            "Cónica Conforme.",
+            "Cilíndrica.",
+            "Ninguna de las anteriores, es un Datum."
+        ],
+        "ans": 2,
+        "exp": "Diseñada por Gerardus Mercator, es la proyección cilíndrica más famosa, manteniendo los ángulos rectos entre paralelos y meridianos (conforme) pero distorsionando fuertemente las áreas hacia los polos."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Diferencias entre servicios WMS y WFS:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>El WMS (Web Map Service) devuelve la cartografía renderizada en un formato de imagen estándar (ej. PNG, JPEG).</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>El WFS (Web Feature Service) permite acceder a los datos vectoriales subyacentes junto a todos sus atributos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>El WFS, en sus versiones transaccionales, permite crear, editar y eliminar geometrías a través de la red.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>El WMS permite al usuario descargar directamente el shapefile original para modificar su topología.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, B y D son correctas.",
+            "Opciones B, C y D son correctas.",
+            "Opciones A, B y C son correctas.",
+            "Todas las opciones son correctas."
+        ],
+        "ans": 2,
+        "exp": "La opción D es la trampa clásica. El WMS solo muestra 'fotos' (visualización); para interactuar o extraer vectores reales se utiliza el WFS."
+    },
+    {
+        "q": "¿Qué significa que los sistemas SIG modernos promuevan la 'Interoperabilidad'?",
+        "options": [
+            "Que todos los usuarios deben usar obligatoriamente el mismo software comercial.",
+            "Que solo se pueden usar bases de datos físicas (locales) sin conexión a internet.",
+            "Que sistemas informáticos heterogéneos pueden comunicarse, ejecutar y compartir datos sin que el usuario conozca las características internas del otro sistema.",
+            "Que los vectores se transforman automáticamente en imágenes raster al acercar el zoom."
+        ],
+        "ans": 2,
+        "exp": "La interoperabilidad, facilitada por estándares del OGC, permite que QGIS, ArcGIS y servicios web 'hablen el mismo idioma' de forma transparente."
+    },
+    {
+        "q": "Respecto a los formatos espaciales, el GeoPackage (.gpkg) se destaca porque:",
+        "options": [
+            "Solo puede almacenar un archivo KML a la vez.",
+            "Está quedando obsoleto y fue reemplazado por el Shapefile.",
+            "Es un formato moderno basado en bases de datos que permite guardar múltiples capas vectoriales y raster en un único archivo.",
+            "No soporta proyecciones cartográficas ni tablas de atributos."
+        ],
+        "ans": 2,
+        "exp": "GeoPackage es el formato abierto moderno por excelencia, actuando como un contenedor SQLite capaz de albergar toda la estructura de un proyecto (vectores y raster) en un solo fichero."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Otros Geoservicios (WCS y CSW):</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>El WCS (Web Coverage Service) sirve para acceder a coberturas continuas, como variables raster e imágenes.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>El CSW (Catalog Service for Web) es el protocolo estándar para buscar y localizar información mediante catálogos de metadatos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>El CSW es el servicio encargado de transformar las coordenadas geográficas de WGS84 a Gauss-Krüger.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Estos geoservicios utilizan peticiones vía web, siendo una alternativa eficiente a la descarga de pesados discos duros.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, B y D son correctas.",
+            "Opciones A, B y C son correctas.",
+            "Solo las opciones A y B son correctas.",
+            "Todas las opciones son correctas."
+        ],
+        "ans": 0,
+        "exp": "La opción C es falsa; el CSW es estrictamente un buscador de metadatos, no un motor de conversión o transformación de sistemas de coordenadas."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Escala y resoluciones cartográficas:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>La escala cartográfica es una razón de proporcionalidad entre una medida en el mapa y la realidad.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Una escala numérica 1:1.000.000 se considera 'mayor escala' (y por ende de mayor detalle) que un mapa 1:1.500.000.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Cuanto mayor es el denominador de la escala, mayor es la reducción que sufre el terreno.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>La escala gráfica pierde su utilidad si el mapa es escaneado o fotocopiado y cambia de tamaño físico.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, B y D son correctas.",
+            "Opciones A, C y D son correctas.",
+            "Opciones A, B y C son correctas.",
+            "Todas las opciones son correctas."
+        ],
+        "ans": 2,
+        "exp": "La opción D es un error conceptual: justamente la ventaja de la escala gráfica (la barrita dibujada) es que si fotocopias/amplías el mapa, la barra crece en proporción, manteniendo su validez."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Geoportal vs Visualizador:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Ambos son interfaces web diseñadas para interactuar con datos en el marco de una IDE.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Un Visualizador web permite navegar, hacer paneos y ver el mapa, pero no permite la descarga de los datos crudos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>El Geoportal es más avanzado porque, además de visualizar, incluye catálogos, enlaces WFS y habilita la descarga de capas en formatos nativos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>El Visualizador del IGN es funcionalmente idéntico a un Geoportal porque ambos permiten extraer .shp y .csv libremente.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, B y D son correctas.",
+            "Opciones A, B y C son correctas.",
+            "Solo las opciones B y C son correctas.",
+            "Todas las opciones son correctas."
+        ],
+        "ans": 1,
+        "exp": "La opción D es falsa, ya que el texto distingue explícitamente al visualizador (que restringe descargas) del geoportal (que permite el acceso completo)."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Operaciones en herramientas SIG (QGIS):</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>En QGIS, si un proyecto usa proyecciones geográficas puras (EPSG 4326), se verán fuertes achatamientos horizontales al acercarse a los polos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>La 'Calculadora de Campos' es fundamental para generar nuevas columnas alfanuméricas o calcular áreas directas ($area) sobre polígonos.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Es posible conectar directamente mapas base comerciales usando complementos como Quick Map Services sin sobrecargar el disco duro.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Al cargar un archivo CSV de texto, es imposible georreferenciarlo si no está convertido previamente a formato Shapefile en otro programa.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Opciones A, B y D son correctas.",
+            "Opciones A, C y D son correctas.",
+            "Opciones A, B y C son correctas.",
+            "Todas las opciones son correctas."
+        ],
+        "ans": 2,
+        "exp": "La opción D es falsa; QGIS es perfectamente capaz de leer un CSV puro y, si este tiene columnas 'X' e 'Y' o formato WKT, lo dibuja como una capa de puntos espaciales al instante."
+    },
+    {
+        "q": "<div class=\"font-bold text-slate-900 mb-2.5 text-base sm:text-lg\">Áreas de aplicación de la Tecnología SIG:</div><div class=\"space-y-1.5 p-3 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-200/80 text-xs sm:text-sm mb-3.5\"><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">A.</span><span>Gestión Pública: modernización catastral, planificación urbana e impacto de grandes obras de infraestructura.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">B.</span><span>Geomarketing: optimización logística, mapas de distribución y localización óptima basada en el perfil territorial de los clientes.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">C.</span><span>Utilities: administración topológica de redes de conducción críticas, como tendidos eléctricos, gasoductos o fibra óptica.</span></div><div class=\"flex items-start gap-2 text-slate-700\"><span class=\"font-bold text-slate-900 min-w-[20px]\">D.</span><span>Seguridad ciudadana: creación de mapas de calor para analizar la incidencia de homicidios por zonas barriales.</span></div></div><div class=\"font-semibold text-blue-700 text-xs sm:text-sm\">¿Cuáles de las afirmaciones anteriores son correctas?</div>",
+        "options": [
+            "Solo las opciones A, B y C son correctas.",
+            "Opciones A, B y D son correctas.",
+            "Opciones B, C y D son correctas.",
+            "Todas las opciones (A, B, C y D) son correctas."
+        ],
+        "ans": 3,
+        "exp": "Todas las afirmaciones corresponden textualmente a los ejemplos empíricos listados de las aplicaciones transversales de los sistemas."
+    }
+];
 
         // Estado de la aplicación
         let userAnswers = new Array(questions.length).fill(null);
@@ -762,7 +817,7 @@
                 let btnClass = 'option-btn w-full text-left p-3.5 sm:p-4 rounded-xl border-2 font-medium text-xs sm:text-sm flex items-start gap-3 ';
 
                 if (!hasAnswered) {
-                    btnClass += 'border-slate-200 bg-white hover:border-blue-500 hover:bg-blue-50/50 text-slate-700 cursor-pointer';
+                    btnClass += 'border-slate-200 bg-white hover:border-blue-500 hover:bg-blue-50/35 text-slate-700 cursor-pointer';
                 } else {
                     btnClass += 'cursor-default ';
                     if (optIdx === answer.selectedIndex) {
