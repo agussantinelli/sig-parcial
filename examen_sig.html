@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Examen - SIG (35 Preguntas)</title>
+    <title>Simulador de Examen - SIG (45 Preguntas)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,13 +18,108 @@
             100% { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); }
         }
         .option-btn { transition: all 0.18s ease-in-out; }
-        .option-btn:hover:not(:disabled) { transform: translateX(4px); }
-        .correct-opt { background-color: #10b981 !important; color: #ffffff !important; border-color: #059669 !important; }
-        .wrong-opt { background-color: #ef4444 !important; color: #ffffff !important; border-color: #dc2626 !important; }
-        .reveal-correct { background-color: #ecfdf5 !important; color: #065f46 !important; border-color: #10b981 !important; font-weight: 600; }
-        /* Custom scrollbar for question matrix */
-        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        
+        /* Custom scrollbars */
+        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 9999px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Floating Mobile Map Button */
+        .mobile-fab {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 45;
+            background: #2563eb;
+            color: #ffffff;
+            padding: 10px 16px;
+            border-radius: 9999px;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.45);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .mobile-fab:active { transform: scale(0.95); background: #1d4ed8; }
+
+        /* ========================================================
+           MEDIA QUERIES - RESPONSIVE DESIGN FOR ALL DEVICES
+           ======================================================== */
+
+        /* Extra Small Phones (max-width: 480px) */
+        @media (max-width: 480px) {
+            header .max-w-7xl { padding-left: 0.75rem; padding-right: 0.75rem; padding-top: 0.5rem; padding-bottom: 0.5rem; }
+            .header-logo { width: 2rem !important; height: 2rem !important; font-size: 0.75rem !important; border-radius: 8px !important; }
+            .header-title { font-size: 0.875rem !important; }
+            .header-subtitle { display: none !important; }
+            #header-stats { gap: 0.35rem !important; font-size: 0.7rem !important; }
+            #header-stats > div { padding: 0.25rem 0.45rem !important; }
+            #view-all-btn, #view-single-btn { font-size: 0.65rem !important; padding: 0.25rem 0.45rem !important; }
+            .question-card { padding: 1rem !important; border-radius: 1rem !important; }
+            .question-title { font-size: 0.95rem !important; line-height: 1.35 !important; }
+            .option-row { padding: 0.75rem !important; gap: 0.5rem !important; font-size: 0.8125rem !important; }
+            .option-badge { width: 1.5rem !important; height: 1.5rem !important; font-size: 0.7rem !important; }
+            .submit-btn { width: 100% !important; justify-content: center !important; }
+            .mobile-fab { display: flex !important; align-items: center; gap: 6px; }
+            #question-grid { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; gap: 0.35rem !important; }
+            #question-grid button { height: 2rem !important; font-size: 0.75rem !important; }
+        }
+
+        /* Small to Medium Mobile (max-width: 640px) */
+        @media (max-width: 640px) {
+            main { padding: 0.75rem !important; }
+            .mobile-fab { display: flex !important; align-items: center; gap: 6px; }
+            .filter-bar { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+            .filter-bar button { white-space: nowrap; font-size: 0.75rem; }
+            #start-screen { padding: 1.5rem 1rem !important; margin-top: 1rem !important; margin-bottom: 1rem !important; }
+            #result-modal > div { padding: 1.5rem 1rem !important; border-radius: 1.25rem !important; }
+            #modal-final-score { font-size: 2.25rem !important; }
+        }
+
+        /* Tablets (min-width: 641px) and (max-width: 1023px) */
+        @media (min-width: 641px) and (max-width: 1023px) {
+            #question-grid { grid-template-columns: repeat(7, minmax(0, 1fr)) !important; gap: 0.45rem !important; }
+            #question-grid button { height: 2.25rem !important; }
+            .question-card { padding: 1.5rem !important; }
+            .sidebar-card { top: 5rem !important; }
+        }
+
+        /* Large Tablets & Desktop (min-width: 1024px) */
+        @media (min-width: 1024px) {
+            .mobile-fab { display: none !important; }
+            .sidebar-card { position: sticky !important; top: 5.5rem !important; }
+            #question-grid { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
+            .option-row:hover:not(.submitted) { transform: translateX(4px); }
+        }
+
+        /* Wide Screens (min-width: 1280px) */
+        @media (min-width: 1280px) {
+            .question-card { padding: 2rem !important; }
+            .question-title { font-size: 1.125rem !important; }
+        }
+
+        /* Touch Devices Optimization (hover: none) */
+        @media (hover: none) {
+            .option-btn:hover { transform: none !important; }
+            button, .option-row { -webkit-tap-highlight-color: transparent; }
+        }
+
+        /* Reduced Motion Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+            html { scroll-behavior: auto !important; }
+        }
+
+        /* Print Media Stylesheet */
+        @media print {
+            header, .sidebar-card, #header-actions, .mobile-fab, button { display: none !important; }
+            body { background: #ffffff !important; color: #000000 !important; }
+            .question-card { break-inside: avoid; border: 1px solid #ccc !important; box-shadow: none !important; margin-bottom: 1.5rem !important; }
+            main { max-width: 100% !important; padding: 0 !important; }
+        }
     </style>
 </head>
 <body class="min-h-screen text-slate-800 antialiased flex flex-col">
@@ -33,12 +128,12 @@
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold shadow-md shadow-blue-500/20">
+                <div class="header-logo w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold shadow-md shadow-blue-500/20">
                     SIG
                 </div>
                 <div>
-                    <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">Simulador de Examen</h1>
-                    <p class="text-xs text-slate-500">35 Preguntas · Modo Simultáneo y Libre</p>
+                    <h1 class="header-title text-base sm:text-lg font-bold text-slate-900 leading-tight">Simulador de Examen</h1>
+                    <p class="header-subtitle text-xs text-slate-500">45 Preguntas · Modo Simultáneo y Libre</p>
                 </div>
             </div>
 
@@ -46,7 +141,7 @@
             <div id="header-stats" class="hidden items-center gap-2 sm:gap-4 text-xs sm:text-sm font-semibold">
                 <div class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 rounded-lg text-slate-700">
                     <span>Respondidas:</span>
-                    <span id="stat-answered" class="text-blue-600 font-bold">0/35</span>
+                    <span id="stat-answered" class="text-blue-600 font-bold">0/45</span>
                 </div>
                 <div class="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 rounded-lg text-emerald-700">
                     <span>Perfectas:</span>
@@ -97,7 +192,7 @@
             
             <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">Simulador Parcial SIG</h2>
             <p class="text-slate-600 text-sm sm:text-base mb-6 leading-relaxed">
-                Podés responder las <strong>35 preguntas en simultáneo</strong> o saltar a cualquiera en el orden que prefieras. Cada respuesta te mostrará retroalimentación y explicación inmediata.
+                Podés responder las <strong>45 preguntas en simultáneo</strong> o saltar a cualquiera en el orden que prefieras. Cada respuesta te mostrará retroalimentación y explicación inmediata.
             </p>
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left mb-8">
@@ -110,7 +205,7 @@
                     <div class="text-xs text-slate-500">Verificá tus aciertos y errores con explicaciones.</div>
                 </div>
                 <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
-                    <div class="text-blue-600 font-bold text-sm mb-1">🧭 Matriz 1 a 35</div>
+                    <div class="text-blue-600 font-bold text-sm mb-1">🧭 Matriz 1 a 45</div>
                     <div class="text-xs text-slate-500">Mapa visual para saltar con un solo click.</div>
                 </div>
             </div>
@@ -137,10 +232,10 @@
                         <div class="flex items-center gap-1.5 text-xs font-semibold overflow-x-auto pb-1 sm:pb-0">
                             <span class="text-slate-500 mr-1">Filtrar:</span>
                             <button id="filter-all" onclick="setFilter('all')" class="px-2.5 py-1.5 rounded-lg bg-blue-100 text-blue-700 font-bold transition-all">
-                                Todas (35)
+                                Todas (45)
                             </button>
                             <button id="filter-pending" onclick="setFilter('pending')" class="px-2.5 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">
-                                Pendientes (<span id="count-pending">35</span>)
+                                Pendientes (<span id="count-pending">45</span>)
                             </button>
                             <button id="filter-correct" onclick="setFilter('correct')" class="px-2.5 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-all">
                                 Correctas (<span id="count-correct">0</span>)
@@ -168,7 +263,7 @@
 
                 </div>
 
-                <!-- Columna Lateral Sticky: Matriz de 35 Preguntas -->
+                <!-- Columna Lateral Sticky: Matriz de 45 Preguntas -->
                 <div class="lg:col-span-4 sticky top-20 space-y-4">
                     <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-5">
                         
@@ -178,13 +273,13 @@
                                 <span>Mapa de Preguntas</span>
                             </h3>
                             <span id="score-badge" class="text-xs font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-                                0 / 35 pts
+                                0 / 45 pts
                             </span>
                         </div>
 
-                        <!-- Grid 1 a 35 -->
+                        <!-- Grid 1 a 45 -->
                         <div id="question-grid" class="grid grid-cols-5 sm:grid-cols-7 lg:grid-cols-5 gap-1.5 mb-4 max-h-[380px] overflow-y-auto custom-scroll pr-1">
-                            <!-- 35 botones generados por JS -->
+                            <!-- 45 botones generados por JS -->
                         </div>
 
                         <!-- Referencia de colores -->
@@ -198,8 +293,8 @@
                                 <span>Perfecta (+1)</span>
                             </div>
                             <div class="flex items-center gap-1.5">
-                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-                                <span>Parcial</span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-400 border border-amber-500"></span>
+                                <span>Incompleta (0 pts)</span>
                             </div>
                             <div class="flex items-center gap-1.5">
                                 <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
@@ -213,9 +308,14 @@
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 <span>Ver Resultados Finales</span>
                             </button>
-                            <button onclick="resetQuiz()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold py-2 px-4 rounded-xl text-xs transition-all">
-                                Reiniciar examen
-                            </button>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="reshuffleQuiz()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2 px-3 rounded-xl text-xs transition-all flex items-center justify-center gap-1.5" title="Reordenar las preguntas de forma 100% aleatoria">
+                                    <span>🔀 Mezclar</span>
+                                </button>
+                                <button onclick="resetQuiz()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold py-2 px-3 rounded-xl text-xs transition-all flex items-center justify-center gap-1">
+                                    <span>Reiniciar</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -231,7 +331,7 @@
                 <p class="text-sm text-slate-500 mb-6">Resumen general de tu desempeño</p>
 
                 <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-5 mb-6">
-                    <div class="text-4xl font-black text-blue-600 mb-1" id="modal-final-score">0 / 35</div>
+                    <div class="text-4xl font-black text-blue-600 mb-1" id="modal-final-score">0 / 45</div>
                     <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4" id="modal-percentage">0% de aciertos</div>
                     
                     <div class="grid grid-cols-3 gap-2 pt-3 border-t border-slate-200 text-xs">
@@ -330,6 +430,22 @@
         "exp": "La opción A es la clásica trampa del parcial; los datos de un SIG provienen de múltiples fuentes, no solo de satélites."
     },
     {
+        "q": "Evolución histórica de los SIG",
+        "type": "multi",
+        "options": [
+            "En los años 70, los SIG se expandieron por universidades y organismos estatales, coincidiendo con hitos como el lanzamiento del satélite LANDSAT 1.",
+            "En la década de 1980, el auge de la computadora personal permitió que esta tecnología saliera del dominio exclusivo de grandes gobiernos y militares.",
+            "El webmapping (mapas dinámicos interactivos) y el software libre irrumpieron de manera masiva en el siglo XXI.",
+            "Desde sus inicios teóricos en los años 50, los SIG siempre fueron concebidos como plataformas exclusivas de código abierto para usuarios domésticos."
+        ],
+        "correctAnswers": [
+            0,
+            1,
+            2
+        ],
+        "exp": "La opción D es falsa, ya que históricamente el desarrollo inicial estuvo ligado a proyectos militares cerrados, la carrera aeroespacial y el uso corporativo, no al software libre doméstico, el cual se popularizó recién en el siglo XXI."
+    },
+    {
         "q": "Sobre el formato Vectorial de información geográfica",
         "type": "multi",
         "options": [
@@ -395,6 +511,22 @@
         "exp": "La opción D es falsa. El Datum define la referencia tridimensional de la Tierra, mientras que la proyección es el método para pasar de esa figura curva a un plano bidimensional."
     },
     {
+        "q": "Geometría y física de los rayos de proyección",
+        "type": "multi",
+        "options": [
+            "En las proyecciones ortogonales, los rayos de proyección son paralelos entre sí y perpendiculares al plano de proyección.",
+            "En las proyecciones oblicuas, los rayos divergen aleatoriamente desde el centro de la Tierra en múltiples direcciones no relacionadas.",
+            "Matemáticamente, todo proceso de proyección se basa en trasladar puntos tridimensionales significativos hacia un plano bidimensional mediante estos rayos.",
+            "En las proyecciones paralelas oblicuas, los rayos mantienen el paralelismo entre sí pero inciden de manera inclinada sobre la superficie del plano."
+        ],
+        "correctAnswers": [
+            0,
+            2,
+            3
+        ],
+        "exp": "La opción B es falsa, dado que en las proyecciones paralelas oblicuas los rayos no divergen aleatoriamente, sino que son paralelos entre ellos incidiendo en un ángulo oblicuo."
+    },
+    {
         "q": "Sistemas de localización y Coordenadas",
         "type": "multi",
         "options": [
@@ -453,6 +585,22 @@
             3
         ],
         "exp": "La opción C es falsa. Mercator es históricamente una proyección de tipo cilíndrica."
+    },
+    {
+        "q": "Detalles y arquitectura de los formatos Vectoriales",
+        "type": "multi",
+        "options": [
+            "El popular formato Shapefile (.shp) requiere obligatoriamente de un conjunto de archivos vinculados guardados en el mismo directorio (ej. .shp, .shx, .dbf) para funcionar correctamente.",
+            "Dentro de la estructura del Shapefile, el archivo con extensión .dbf es el encargado exclusivo de almacenar la tabla de atributos alfanuméricos.",
+            "Formatos como KML y su versión comprimida KMZ fueron desarrollados orientados a la visualización y el intercambio rápido en plataformas como Google Earth.",
+            "El formato moderno GeoPackage tiene la estricta limitación de almacenar únicamente capas vectoriales, siendo incompatible con modelos de malla continua."
+        ],
+        "correctAnswers": [
+            0,
+            1,
+            2
+        ],
+        "exp": "La opción D es falsa; una de las principales ventajas del GeoPackage moderno es su versatilidad como contenedor de bases de datos para almacenar múltiples capas, tanto vectoriales como ráster, en un mismo archivo."
     },
     {
         "q": "Proyección Gauss-Krüger",
@@ -515,6 +663,22 @@
         "exp": "La opción B es la clásica trampa que cruza las siglas de la informática (IDE de programación) con la geomática; en SIG, es una infraestructura territorial."
     },
     {
+        "q": "Formatos orientados a Web y Webmapping",
+        "type": "multi",
+        "options": [
+            "El Webmapping consiste en la creación tecnológica de mapas dinámicos publicados en internet para que el usuario visualice e interactúe directamente desde la red.",
+            "El formato GML es el estándar acordado (basado en XML) para intercambiar geometrías y almacenar topologías vectoriales.",
+            "Formatos ligeros como GeoJSON y TopoJSON son altamente explotados en el desarrollo y la programación web moderna.",
+            "Para lograr un correcto despliegue webmapping, es un requisito obligatorio comprimir todas las capas vectoriales en el estándar gráfico JPEG 2000."
+        ],
+        "correctAnswers": [
+            0,
+            1,
+            2
+        ],
+        "exp": "La opción D es incorrecta; JPEG 2000 es un formato utilizado para imágenes y coberturas (ráster), no se aplica para comprimir datos vectoriales, los cuales utilizan GeoJSON, GML o WKT."
+    },
+    {
         "q": "Un archivo con extensión .SHP (Shapefile) desarrollado por ESRI se compone obligatoriamente de:",
         "type": "single",
         "options": [
@@ -573,6 +737,22 @@
         "exp": "El WGS 84 es el Datum geocéntrico estándar global sobre el cual operan los satélites GPS."
     },
     {
+        "q": "Características del Sistema Internacional de Referencia Terrestre (ITRS/CTRS)",
+        "type": "multi",
+        "options": [
+            "Su punto de origen exacto coincide directamente con el centro de masas tridimensional de la Tierra.",
+            "Plantea una materialización práctica estructurada sobre una terna global de ejes cartesianos ortogonales (X, Y, Z).",
+            "En su diseño, el eje 'Z' se asocia y alinea de manera coincidente con el eje de rotación de la Tierra.",
+            "Debido a su alcance planetario, el CTRS entrega sus coordenadas finales expresadas únicamente en latitud y longitud geográficas."
+        ],
+        "correctAnswers": [
+            0,
+            1,
+            2
+        ],
+        "exp": "La opción D es la trampa; las coordenadas geográficas usan grados, pero el CTRS utiliza los ejes tridimensionales con coordenadas cartesianas globales (valores X, Y y Z medidos métricamente desde el centro del planeta)."
+    },
+    {
         "q": "Dentro de las proyecciones cartográficas, ¿cuál es la característica de las proyecciones Acimutales (o Planas)?",
         "type": "single",
         "options": [
@@ -629,6 +809,22 @@
             2
         ],
         "exp": "Sin coordenadas explícitas, el SIG no puede geolocalizar los registros, por lo que el CSV entra simplemente como una tabla relacional no espacial."
+    },
+    {
+        "q": "Dimensiones y componentes estructurales de una IDE",
+        "type": "multi",
+        "options": [
+            "La Dimensión Tecnológica es la infraestructura 'dura' e incluye datos espaciales, metadatos, estándares técnicos y los servidores/servicios web.",
+            "La Dimensión de Gestión u Organización se encarga de articular el marco legal, los convenios y los acuerdos de cooperación entre los distintos ministerios y direcciones.",
+            "La Dimensión Humana contempla a los técnicos productores, los analistas usuarios y la voluntad política que impulsa todo el proyecto.",
+            "La Dimensión Satelital es el bloque enfocado de manera exclusiva en el control telemétrico y calibración de órbitas de los satélites en el espacio."
+        ],
+        "correctAnswers": [
+            0,
+            1,
+            2
+        ],
+        "exp": "La opción D es falsa y un elemento distractor; la teoría no enumera ninguna 'dimensión satelital' como componente intrínseco para el funcionamiento de una IDE."
     },
     {
         "q": "Estándares OGC e Interoperabilidad",
@@ -691,6 +887,22 @@
         "exp": "La opción D es la trampa clásica. El WMS solo muestra 'fotos' (visualización); para interactuar o extraer vectores reales se utiliza el WFS."
     },
     {
+        "q": "Estándares visuales y desafíos de adopción de una IDE",
+        "type": "multi",
+        "options": [
+            "A pesar del despliegue necesario, en la implementación real de una IDE los desafíos netamente tecnológicos son menores frente a los severos obstáculos culturales e institucionales.",
+            "El éxito de toda la estrategia depende críticamente de contar con un sólido apoyo y patrocinio político gubernamental.",
+            "El estándar OGC denominado SLD (Style Layer Descriptor) es la herramienta normativa utilizada para aplicar estilos o simbología gráfica personalizada a las capas en la red.",
+            "El principal impedimento para formar una IDE hoy en día es que los componentes de hardware comercial son incapaces de soportar peticiones cliente-servidor."
+        ],
+        "correctAnswers": [
+            0,
+            1,
+            2
+        ],
+        "exp": "La opción D no tiene base en los textos y contradice el hecho de que el obstáculo principal es institucional/humano, no la supuesta falta de capacidad del hardware comercial moderno."
+    },
+    {
         "q": "¿Qué significa que los sistemas SIG modernos promuevan la 'Interoperabilidad'?",
         "type": "single",
         "options": [
@@ -751,6 +963,22 @@
         "exp": "La opción D es un error conceptual: justamente la ventaja de la escala gráfica (la barrita dibujada) es que si fotocopias/amplías el mapa, la barra crece en proporción, manteniendo su validez."
     },
     {
+        "q": "Diseño métrico y Falso Origen en la Proyección Gauss-Krüger (Argentina)",
+        "type": "multi",
+        "options": [
+            "Para la planimetría nacional, el origen métrico del Eje X (Ordenadas) se ancla al Polo Sur, creciendo hacia valores positivos en dirección al Norte.",
+            "El origen del Eje Y (Abscisas) corresponde matemáticamente al meridiano central particular de cada una de las 7 fajas.",
+            "Al valor final coordenado del Eje Y se le suele anteponer directamente como prefijo el dígito que identifica el número de su faja.",
+            "Para impedir tener coordenadas negativas hacia el Oeste, al meridiano central (Eje Y) se le resta sistemáticamente la constante de 500.000 metros."
+        ],
+        "correctAnswers": [
+            0,
+            1,
+            2
+        ],
+        "exp": "La opción D es falsa, ya que para que todos los números queden en rango positivo el Falso Este de 500.000 metros debe sumarse al meridiano central, no restarse."
+    },
+    {
         "q": "Geoportal vs Visualizador",
         "type": "multi",
         "options": [
@@ -798,8 +1026,51 @@
             3
         ],
         "exp": "Todas las afirmaciones corresponden textualmente a los ejemplos empíricos listados de las aplicaciones transversales de los sistemas."
+    },
+    {
+        "q": "Análisis de casos prácticos y aplicaciones de los SIG",
+        "type": "multi",
+        "options": [
+            "En Medio Ambiente, un caso de análisis de vulnerabilidad territorial fue el estudio del impacto del desborde del Río Salado e inundaciones en Santa Fe en el año 2003.",
+            "En el ámbito de Seguridad Urbana, se han elaborado modelos cartográficos de calor (densidad) para identificar focos de homicidios y heridos de arma de fuego en Rosario.",
+            "En Gestión Pública, destacan herramientas para la modernización de los catastros municipales y la zonificación de recursos.",
+            "En Utilities, la aplicación central consiste en utilizar Geomarketing para enviar propaganda política dirigida a los residentes cercanos a las oficinas de agua potable."
+        ],
+        "correctAnswers": [
+            0,
+            1,
+            2
+        ],
+        "exp": "La opción D mezcla los conceptos de forma disparatada; las aplicaciones 'Utilities' son para gestionar infraestructuras y redes de suministro (gas, agua, cloacas, cables), no para lanzar campañas de geomarketing electoral."
+    },
+    {
+        "q": "Interpretación aritmética de Escalas Cartográficas",
+        "type": "multi",
+        "options": [
+            "En el formato de fracción o escala numérica, el número del numerador define la distancia impresa en el mapa y el denominador la contraparte en la realidad física.",
+            "Para que la interpretación numérica sea matemáticamente válida, ambos componentes de la escala deben expresarse forzosamente en la misma unidad de medida.",
+            "Al comparar hojas, una zona urbana diagramada a escala 1:25.000 posee muchísimo mayor nivel de detalle cartográfico que todo el país graficado a escala 1:1.000.000.",
+            "Si conocemos la medida del plano (d) y la Escala (E), la Distancia Real (D) del terreno se calcula dividiendo la medida en el papel por la escala (D = d / E)."
+        ],
+        "correctAnswers": [
+            0,
+            1,
+            2
+        ],
+        "exp": "La opción D está invertida aritméticamente; la distancia del terreno en la realidad es producto de multiplicar el tamaño en papel por el valor escalar, es decir, D = E * d."
     }
 ];
+
+        // Algoritmo de Fisher-Yates para orden 100% aleatorio
+        function shuffleQuestions() {
+            for (let i = questions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [questions[i], questions[j]] = [questions[j], questions[i]];
+            }
+        }
+
+        // Mezclar aleatoriamente las preguntas al cargar la página
+        shuffleQuestions();
 
         // Estado de la aplicación
         let userSelections = new Array(questions.length).fill(null).map(() => []);
@@ -809,6 +1080,7 @@
         let currentFilter = 'all'; // 'all', 'pending', 'submitted'
 
         function startQuiz(mode = 'all') {
+            shuffleQuestions();
             document.getElementById('start-screen').classList.add('hidden');
             
             const quizScreen = document.getElementById('quiz-screen');
@@ -905,6 +1177,7 @@
             const stats = calculateScore();
 
             document.getElementById('stat-answered').innerText = `${stats.answeredCount}/${questions.length}`;
+            const fabCounter = document.getElementById('fab-answered'); if(fabCounter) fabCounter.innerText = stats.answeredCount;
             document.getElementById('stat-correct').innerText = stats.perfectCount;
             const pElem = document.getElementById('stat-partial'); if(pElem) pElem.innerText = stats.partialCount;
             document.getElementById('stat-incorrect').innerText = stats.wrongCount;
@@ -940,7 +1213,7 @@
                 } else if (ans.status === 'perfect') {
                     baseClass += 'bg-emerald-500 border-emerald-600 text-white shadow-sm';
                 } else if (ans.status === 'partial') {
-                    baseClass += 'bg-amber-500 border-amber-600 text-white shadow-sm';
+                    baseClass += 'bg-amber-400 border-amber-500 text-slate-950 font-black shadow-sm ring-1 ring-amber-400';
                 } else {
                     baseClass += 'bg-rose-500 border-rose-600 text-white shadow-sm';
                 }
@@ -1033,21 +1306,17 @@
             let score = 0;
             let status = 'wrong';
 
+            // Regla estricta: Solo suma 1 si le pega a TODAS las correctas sin errores.
+            // Si no le pega a todas (o tuvo algún acierto parcial), suma 0 pts pero la casilla va en amarillo.
             if (correctHits === totalCorrect && wrongHits === 0) {
-                score = 1.0;
-                status = 'perfect';
-            } else if (correctHits > 0 && wrongHits === 0) {
-                // Parcial sin errores
-                score = parseFloat((correctHits / totalCorrect).toFixed(2));
-                status = 'partial';
-            } else if (correctHits > wrongHits) {
-                // Parcial con algún error pero positivo
-                score = parseFloat(((correctHits - wrongHits) / totalCorrect).toFixed(2));
-                if (score < 0) score = 0;
-                status = score > 0 ? 'partial' : 'wrong';
+                score = 1;
+                status = 'perfect'; // Verde en el mapa
+            } else if (correctHits > 0) {
+                score = 0; // 0 de puntaje si no acertó el 100%
+                status = 'partial'; // Casilla en AMARILLO en el mapa
             } else {
                 score = 0;
-                status = 'wrong';
+                status = 'wrong'; // Rojo en el mapa (0 aciertos)
             }
 
             submittedAnswers[qIdx] = {
@@ -1172,13 +1441,13 @@
                 let bannerIcon = '🏆';
 
                 if (submission.status === 'partial') {
-                    bannerColor = 'bg-amber-50 border-amber-200 text-amber-900';
-                    bannerTitle = `⚡ Respuesta Parcial: Acertaste ${submission.correctHits} de ${submission.totalCorrect} opciones correctas`;
-                    bannerIcon = '⚖️';
+                    bannerColor = 'bg-amber-50 border-amber-300 text-amber-950';
+                    bannerTitle = `⚠️ Respuesta Incompleta: Acertaste ${submission.correctHits} de ${submission.totalCorrect} opciones correctas${submission.wrongHits > 0 ? ` (y marcaste ${submission.wrongHits} incorrecta)` : ''} · Puntaje: 0 pts`;
+                    bannerIcon = '🟡';
                 } else if (submission.status === 'wrong') {
-                    bannerColor = 'bg-rose-50 border-rose-200 text-rose-900';
-                    bannerTitle = `❌ Respuesta Incorrecta: Acertaste ${submission.correctHits} de ${submission.totalCorrect} opciones correctas`;
-                    bannerIcon = '💡';
+                    bannerColor = 'bg-rose-50 border-rose-300 text-rose-950';
+                    bannerTitle = `❌ Respuesta Incorrecta: No acertaste las opciones correctas · Puntaje: 0 pts`;
+                    bannerIcon = '🔴';
                 }
 
                 footerHTML = `
@@ -1187,7 +1456,7 @@
                             <div class="flex items-start gap-2.5">
                                 <span class="text-lg">${bannerIcon}</span>
                                 <div class="flex-1">
-                                    <div class="font-bold">${bannerTitle} (+${submission.score} pts)</div>
+                                    <div class="font-bold">${bannerTitle}</div>
                                     <div class="mt-1 text-slate-700 leading-relaxed"><strong class="text-slate-900">Explicación oficial:</strong> ${q.exp}</div>
                                 </div>
                             </div>
@@ -1320,8 +1589,34 @@
             document.getElementById('result-modal').classList.add('hidden');
         }
 
+        function reshuffleQuiz() {
+            if (confirm('¿Deseas mezclar el orden de las preguntas al azar? Se reiniciarán las respuestas.')) {
+                shuffleQuestions();
+                userSelections = new Array(questions.length).fill(null).map(() => []);
+                submittedAnswers = new Array(questions.length).fill(null);
+                currentSingleIndex = 0;
+                currentFilter = 'all';
+                updateStats();
+                renderQuestionGrid();
+                if (viewMode === 'all') {
+                    renderAllQuestions();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    renderSingleQuestion();
+                }
+            }
+        }
+
+        function scrollToMap() {
+            const grid = document.getElementById('question-grid');
+            if (grid) {
+                grid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
         function resetQuiz() {
-            if (confirm('¿Estás seguro de que quieres reiniciar todo el examen? Se borrarán tus respuestas.')) {
+            if (confirm('¿Estás seguro de que quieres reiniciar todo el examen? Se borrarán tus respuestas y se reordenarán las preguntas al azar.')) {
+                shuffleQuestions();
                 userSelections = new Array(questions.length).fill(null).map(() => []);
                 submittedAnswers = new Array(questions.length).fill(null);
                 currentSingleIndex = 0;
