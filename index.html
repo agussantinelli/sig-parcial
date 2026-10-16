@@ -138,7 +138,7 @@
             </div>
 
             <!-- Global Stats in Header -->
-            <div id="header-stats" class="hidden items-center gap-2 sm:gap-4 text-xs sm:text-sm font-semibold">
+            <div id="header-stats" class="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm font-semibold">
                 <div class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 rounded-lg text-slate-700">
                     <span>Respondidas:</span>
                     <span id="stat-answered" class="text-blue-600 font-bold">0/45</span>
@@ -157,16 +157,8 @@
                 </div>
             </div>
 
-            <!-- View Switcher & Action Buttons -->
-            <div id="header-actions" class="hidden items-center gap-2">
-                <div class="bg-slate-100 p-0.5 rounded-lg flex text-xs font-medium">
-                    <button id="view-all-btn" onclick="setViewMode('all')" class="px-2.5 py-1.5 rounded-md transition-all bg-white text-blue-700 shadow-sm font-semibold">
-                        Todas simultáneas
-                    </button>
-                    <button id="view-single-btn" onclick="setViewMode('single')" class="px-2.5 py-1.5 rounded-md transition-all text-slate-600 hover:text-slate-900">
-                        Una por una
-                    </button>
-                </div>
+            <!-- Action Buttons -->
+            <div id="header-actions" class="flex items-center gap-2">
                 <button onclick="showResults()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold py-1.5 px-3 sm:px-4 rounded-lg shadow-sm transition-all flex items-center gap-1.5">
                     <span>Finalizar</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -181,34 +173,6 @@
 
     <!-- Main Container -->
     <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
-        
-        <!-- Pantalla de Inicio -->
-        <div id="start-screen" class="max-w-2xl mx-auto my-12 bg-white rounded-2xl shadow-xl border border-slate-200/80 p-8 sm:p-10 text-center fade-in">
-            <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-blue-50 text-blue-600 mb-6 shadow-inner">
-                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                </svg>
-            </div>
-            
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">Simulador Parcial SIG</h2>
-            <p class="text-slate-600 text-sm sm:text-base mb-6 leading-relaxed">
-                Podés responder las <strong>45 preguntas en simultáneo</strong> o saltar a cualquiera en el orden que prefieras. Cada respuesta te mostrará retroalimentación y explicación inmediata.
-            </p>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left mb-8">
-                <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
-                    <div class="text-blue-600 font-bold text-sm mb-1">⚡ Sin orden fijo</div>
-                    <div class="text-xs text-slate-500">Resolvé la que quieras en cualquier momento.</div>
-                </div>
-                <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
-                    <div class="text-blue-600 font-bold text-sm mb-1">🎯 Corrección al instante</div>
-                    <div class="text-xs text-slate-500">Verificá tus aciertos y errores con explicaciones.</div>
-                </div>
-                <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/70">
-                    <div class="text-blue-600 font-bold text-sm mb-1">🧭 Matriz 1 a 45</div>
-                    <div class="text-xs text-slate-500">Mapa visual para saltar con un solo click.</div>
-                </div>
-            </div>
 
             <div class="flex flex-col sm:flex-row gap-3 justify-center">
                 <button onclick="startQuiz('all')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-blue-500/25 transition-all transform hover:-translate-y-0.5">
@@ -221,7 +185,7 @@
         </div>
 
         <!-- Pantalla del Cuestionario -->
-        <div id="quiz-screen" class="hidden">
+        <div id="quiz-screen">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                 
                 <!-- Columna Principal: Preguntas -->
@@ -254,11 +218,6 @@
                     <!-- Modo 1: Lista con Todas las Preguntas Simultáneas -->
                     <div id="questions-all-container" class="space-y-6">
                         <!-- Generado dinámicamente -->
-                    </div>
-
-                    <!-- Modo 2: Vista Enfocada (1 por 1) -->
-                    <div id="question-single-container" class="hidden">
-                        <!-- Tarjeta individual generada dinámicamente -->
                     </div>
 
                 </div>
@@ -1072,16 +1031,30 @@
         // Mezclar aleatoriamente las preguntas al cargar la página
         shuffleQuestions();
 
+        function initApp() {
+            setViewMode('all');
+            renderQuestionGrid();
+            renderAllQuestions();
+            updateStats();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initApp);
+        } else {
+            initApp();
+        }
+
         // Estado de la aplicación
         let userSelections = new Array(questions.length).fill(null).map(() => []);
         let submittedAnswers = new Array(questions.length).fill(null);
-        let viewMode = 'all'; // 'all' (todas simultáneas) o 'single' (una por una)
+        let viewMode = 'all'; // Siempre vista simultánea
         let currentSingleIndex = 0;
         let currentFilter = 'all'; // 'all', 'pending', 'submitted'
 
         function startQuiz(mode = 'all') {
             shuffleQuestions();
-            document.getElementById('start-screen').classList.add('hidden');
+            const startScreen = document.getElementById('start-screen');
+            if (startScreen) startScreen.classList.add('hidden');
             
             const quizScreen = document.getElementById('quiz-screen');
             quizScreen.classList.remove('hidden');
@@ -1139,11 +1112,7 @@
                 }
             });
 
-            if (viewMode === 'all') {
-                renderAllQuestions();
-            } else {
-                renderSingleQuestion();
-            }
+            renderAllQuestions();
         }
 
         function calculateScore() {
@@ -1232,21 +1201,15 @@
         }
 
         function handleGridClick(idx) {
-            if (viewMode === 'all') {
-                if (currentFilter !== 'all') {
-                    setFilter('all');
-                }
-                const card = document.getElementById(`question-card-${idx}`);
-                if (card) {
-                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    card.classList.remove('highlight-card');
-                    void card.offsetWidth; // Trigger reflow
-                    card.classList.add('highlight-card');
-                }
-            } else {
-                currentSingleIndex = idx;
-                renderSingleQuestion();
-                renderQuestionGrid();
+            if (currentFilter !== 'all') {
+                setFilter('all');
+            }
+            const card = document.getElementById(`question-card-${idx}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                card.classList.remove('highlight-card');
+                void card.offsetWidth; // Trigger reflow
+                card.classList.add('highlight-card');
             }
         }
 
@@ -1336,15 +1299,11 @@
 
         function renderQuestionCardElement(qIdx) {
             const q = questions[qIdx];
-            if (viewMode === 'all') {
-                const card = document.getElementById(`question-card-${qIdx}`);
-                if (card) {
-                    const temp = document.createElement('div');
-                    temp.innerHTML = buildQuestionCardHTML(q, qIdx);
-                    card.replaceWith(temp.firstElementChild);
-                }
-            } else {
-                renderSingleQuestion();
+            const card = document.getElementById(`question-card-${qIdx}`);
+            if (card) {
+                const temp = document.createElement('div');
+                temp.innerHTML = buildQuestionCardHTML(q, qIdx);
+                card.replaceWith(temp.firstElementChild);
             }
         }
 
@@ -1598,12 +1557,8 @@
                 currentFilter = 'all';
                 updateStats();
                 renderQuestionGrid();
-                if (viewMode === 'all') {
-                    renderAllQuestions();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                    renderSingleQuestion();
-                }
+                renderAllQuestions();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
 
