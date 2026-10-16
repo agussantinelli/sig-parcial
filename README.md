@@ -130,7 +130,6 @@
 │   └── workflows/
 │       └── deploy.yml       # Pipeline automatizado de CI/CD para GitHub Pages
 ├── index.html               # Aplicación principal SPA (Punto de entrada para el despliegue)
-├── examen_sig.html          # Copia sincronizada del simulador
 └── README.md                # Documentación técnica y académica del repositorio
 </code></pre>
 
